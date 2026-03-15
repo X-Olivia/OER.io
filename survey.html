@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survey — OER Menstrual Prediction</title>
+  <meta name="description" content="Field survey: background, menstrual type taxonomy, method taxonomy, performance limits, research hotspots." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="oer-header">
+    <div class="oer-wrap">
+      <div class="oer-logo"><a href="index.html">OER · Menstrual Prediction</a></div>
+      <nav>
+        <ul class="oer-nav">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="survey.html" aria-current="page">Survey</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="license.html">License</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="oer-wrap">
+    <h1 class="heading-serif page-title">Field Survey</h1>
+    <p class="page-subtitle">Background, taxonomies, methods, performance limits, and research directions.</p>
+
+    <section class="oer-section">
+      <h2>Background &amp; problem</h2>
+      <p>Menstrual cycle (MC) inference is challenging due to substantial inter- and intra-individual variability, sparse real-world observations, and the indirect nature of physiological proxies. Dysmenorrhoea and related discomforts are highly prevalent and affect daily functioning; care remains largely manual and episodic. From a physiological perspective, the MC is a periodic endocrine-regulated process; ovulation, rather than bleeding, is the key temporal anchor—the luteal phase is relatively stable (e.g. 12–14 days) while the follicular phase varies. In embodied and robotic settings, MC prediction supports proactive decision-making under sparse, multimodal sensing rather than retrospective analysis alone.</p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Menstrual type taxonomy</h2>
+      <p>Cycle type affects which modelling assumptions apply. Ovulation-based frameworks are not universally applicable: in anovulatory cycles, characteristic progesterone-related patterns are absent.</p>
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ovulatory cycle</td><td>Functional luteal phase; ovulation-related physiological patterns (e.g. post-ovulatory thermal shift, HR/HRV changes) can be used for inference.</td></tr>
+          <tr><td>Anovulatory cycle</td><td>No functional luteal phase; methods relying on ovulation or progesterone shifts are not applicable.</td></tr>
+          <tr><td>Regular vs irregular</td><td>Cycle length and phase proportions vary within and across individuals; irregular cycles challenge calendar-based and many physiology-based methods.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="oer-section">
+      <h2>Research method taxonomy</h2>
+      <p>Computational approaches can be grouped by input (bleeding-only vs physiological signals) and by modelling paradigm (statistical/calendar vs physiology-informed vs data-driven).</p>
+      <table>
+        <thead>
+          <tr><th>Category</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Calendar-based</td><td>Use only self-reported bleeding onset; moving averages, Bayesian cycle-length models, Hidden Semi-Markov Models (HSMM). Scalable and low burden but weak in irregular cycles.</td></tr>
+          <tr><td>Physiology-based (wearable)</td><td>Nocturnal/resting signals (WST, HR, HRV, etc.) with ovulation anchored by urinary LH (or similar). Day-level features, then ovulation inference and/or menstrual prediction.</td></tr>
+          <tr><td>Data-driven ML</td><td>Gradient boosting, RF, SVM, etc. Learn mappings from physiological features to phase or events; performance degrades with irregularity and noise.</td></tr>
+          <tr><td>Physiology-informed signal processing</td><td>Exploit morphological patterns (e.g. biphasic temperature) to identify ovulation; high accuracy when patterns are clear, abstain when absent.</td></tr>
+          <tr><td>Probabilistic / density-based</td><td>Kernel density estimation, logistic regression for fertile window or menstrual onset; calibrated uncertainty, often robust only in regular cohorts.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="oer-section">
+      <h2>Overview of existing work</h2>
+      <p>Representative physiological correlates from wearables include: wrist skin temperature (WST) with post-ovulatory elevation; fingertip temperature aligned with ovulation; nocturnal minimum HR (elevated in luteal phase); HF-HRV with peri-ovulatory decline. Ovulation annotation is usually based on urinary LH (surge onset/peak + 1 day, etc.); studies differ in exact definitions. Data-driven and physiology-informed methods both face limits from signal noise, behavioural variability, and annotation uncertainty. Performance is consistently better when predicting menstruation from inferred ovulation than from direct ovulation detection, due to luteal phase stability.</p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Performance limits</h2>
+      <p>Reported ranges from the literature (regular ovulatory cycles, dense sampling). Sparse or irregular settings typically see larger errors.</p>
+      <table>
+        <thead>
+          <tr><th>Paradigm / metric</th><th>Approx. range</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Data-driven ML (ovulation MAE)</td><td>≈ 2–4 days; lowest ≈ 2 days in favourable sub-cohorts</td></tr>
+          <tr><td>Probabilistic (fertile window AUC; menstrual ±2 d)</td><td>AUC ≈ 0.87; ~83% within ±2 days</td></tr>
+          <tr><td>Physiology-informed (ovulation MAE; ±2 d accuracy)</td><td>MAE ≈ 1–2 days in detectable cycles; 78–89% ±2-day</td></tr>
+          <tr><td>Calendar-based (irregular cycles)</td><td>Errors can exceed ±8 days</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="oer-section">
+      <h2>Research hotspots &amp; directions to avoid</h2>
+      <p><strong>Current focus:</strong> Ovulation-centred inference under sparse or irregular sampling; multimodal wearable features with hormonally verified labels; uncertainty-aware and robustness to missing data; integration into embodied/robotic systems for proactive support.</p>
+      <p><strong>Directions to treat with caution or avoid:</strong> Purely calendar-based methods for irregular populations without physiological signals; assuming dense daily sampling in long-term deployment; treating ovulation annotation as a single gold standard (operational definitions vary); overfitting complex models on small cohorts without strong regularisation or physiological grounding.</p>
+    </section>
+
+    <footer class="oer-footer">
+      <p class="mb-0 text-light"><a href="index.html">↑ Overview</a> · <a href="license.html">License &amp; citation</a></p>
+    </footer>
+  </main>
+</body>
+</html>

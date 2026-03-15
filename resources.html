@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources &amp; Data — OER Menstrual Prediction</title>
+  <meta name="description" content="Open datasets and data-processing code for menstrual prediction research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="oer-header">
+    <div class="oer-wrap">
+      <div class="oer-logo"><a href="index.html">OER · Menstrual Prediction</a></div>
+      <nav>
+        <ul class="oer-nav">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="survey.html">Survey</a></li>
+          <li><a href="resources.html" aria-current="page">Resources</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="license.html">License</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="oer-wrap">
+    <h1 class="heading-serif page-title">Resources &amp; Data</h1>
+    <p class="page-subtitle">Open datasets and data-processing code.</p>
+
+    <section class="oer-section">
+      <h2>Open datasets</h2>
+      <p>Datasets used or referenced in this project for menstrual cycle and ovulation inference.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Source / link</th>
+            <th>Scale</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mcPHASES</td>
+            <td><a href="https://www.physionet.org/content/mcphases/1.0.0/" target="_blank" rel="noopener">PhysioNet</a> (DOI: 10.13026/zx6a-2c81)</td>
+            <td>42 participants; two study periods</td>
+            <td>Wearable physiological signals, daily hormone assays (e.g. LH), self-reported menstrual health. Used for physiology-informed, day-level modelling.</td>
+          </tr>
+          <tr>
+            <td>Menstrual Cycle Data (Kaggle)</td>
+            <td><a href="https://www.kaggle.com/datasets/nikitabisht/menstrual-cycle-data" target="_blank" rel="noopener">Kaggle</a></td>
+            <td>Self-reported cycle records</td>
+            <td>Used for multi-modal self-reported baseline reproduction (e.g. DT, RF, LSTM on cycle-structure features).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="oer-section">
+      <h2>Data-processing code</h2>
+      <p>Pipeline for hormonal data alignment, ovulation day annotation (LH surge onset/peak + 1 day, multi-peak handling), and construction of temporally aligned cycle-level and day-level representations. Self-reported data: subject-specific mean imputation, cycle-level structural features. Code and usage instructions will be linked here (e.g. GitHub repository).</p>
+      <p><a href="#" class="btn-metal">Download</a></p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Usage notes</h2>
+      <p>mcPHASES: check PhysioNet for citation and license. For ovulation annotation, hormonal measurements are used only as labels, not as model inputs, to simulate wearable-only deployment. Subject-level or cycle-level splitting is recommended to avoid leakage. Kaggle data: see dataset page for terms of use.</p>
+    </section>
+
+    <footer class="oer-footer">
+      <p class="mb-0 text-light"><a href="index.html">↑ Overview</a> · <a href="license.html">License &amp; citation</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Research — OER Menstrual Prediction</title>
+  <meta name="description" content="Research overview, paper, code, and results for menstrual prediction." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="oer-header">
+    <div class="oer-wrap">
+      <div class="oer-logo"><a href="index.html">OER · Menstrual Prediction</a></div>
+      <nav>
+        <ul class="oer-nav">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="survey.html">Survey</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="research.html" aria-current="page">Research</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="license.html">License</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="oer-wrap">
+    <h1 class="heading-serif page-title">My Research</h1>
+    <p class="page-subtitle">Overview, paper, code, and results.</p>
+
+    <section class="oer-section">
+      <h2>Overview</h2>
+      <p>This project develops a physiology-informed, data-driven framework for MC and ovulation inference from sparsely sampled physiological signals, and integrates it into an embodied menstrual service robot. The methodology treats the MC as a temporally structured latent process: day-level physiological features (e.g. from temperature and cardiac signals) are combined with ovulation anchoring from urinary LH. A sequential multi-task model supports both ovulation-centred cycle state inference and menstrual onset prediction. Current status: literature review, data preprocessing, ovulation annotation pipelines, and baseline reproduction (DT, RF, LSTM, hierarchical generative, Poisson) under subject-level evaluation; robotic platform (ROS, pose estimation, SLAM, navigation) implemented as a supporting demonstrator.</p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Paper</h2>
+      <p><strong>Interim Report: An Embodied Care Robot Supported by Physiological Menstrual Cycle Inference.</strong> Jing Xu; Supervisor: Professor Dave Towey. The report covers background and motivation, literature review (physiological constraints, computational approaches, performance limits), methodology (data processing, sequential multi-task latent cycle state model, evaluation design), implementation (preprocessing, ovulation annotation, baseline reproduction, robot system), and progress reflection.</p>
+      <p>Abstract: MC inference is challenging due to variability, sparse observations, and indirect proxies; in embodied healthcare it acts as an upstream component for proactive robotic decision-making. This project investigates a framework based on sparsely sampled physiological signals and its integration into an embodied menstrual service robot. The methodology uses day-level physiological features and LH-based ovulation anchoring; a sequential multi-task strategy supports ovulation-centred state inference and menstrual onset prediction. Completed: literature review, preprocessing, ovulation annotation, baseline reproduction, and robotic system architecture. Future work: end-to-end integration of wearable-derived features, evaluation under sparse/irregular regimes, and closed-loop robotic behaviours.</p>
+      <p><a href="#" class="btn-metal">PDF</a></p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Code &amp; reproducibility</h2>
+      <p>Implementation includes: data preprocessing (hormonal alignment, self-reported cycle structure); ovulation annotation module (LH surge onset/peak/final peak + 1 day, peak detection, multi-peak handling); baseline models (DT, RF, LSTM on self-reported/sequence inputs; hierarchical generative and Poisson on cycle length). Robot: ROS-based modular service robot (pose estimation, SLAM, TEB navigation). Code repository and run instructions will be linked here.</p>
+      <p><a href="#" class="btn-metal">View code</a></p>
+    </section>
+
+    <section class="oer-section">
+      <h2>Results &amp; figures</h2>
+      <p>Preliminary baseline performance (subject-level splitting; MAE in days): Self-reported multi-modal (DT ≈ 1.87, RF ≈ 1.90); self-reported sequence LSTM (W=3) ≈ 1.94; historical cycle length—hierarchical generative ≈ 3.46, Poisson ≈ 3.45. These verify implementation and baseline behaviour; final model evaluation and error–day-in-cycle analysis are part of ongoing work. Figures from the report (e.g. LH trajectories with ovulation anchors, model structure, timelines) can be added to this section or linked from the paper.</p>
+    </section>
+
+    <footer class="oer-footer">
+      <p class="mb-0 text-light"><a href="index.html">↑ Overview</a> · <a href="license.html">License &amp; citation</a></p>
+    </footer>
+  </main>
+</body>
+</html>
