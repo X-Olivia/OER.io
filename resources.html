@@ -108,19 +108,23 @@
     </section>
 
     <section class="oer-section" id="starter-code">
-      <h2>Starter code: From raw data to model-ready features</h2>
+      <h2>Starter code for the PhysioNet mcPHASES dataset</h2>
       <div class="oer-card accent-card">
-        <h3>Recommended: Data Processing Workflow</h3>
+        <h3>Recommended: PhysioNet / mcPHASES data-processing workflow</h3>
         <p>
           The first challenge in menstrual research is not the model, but the <strong>data alignment</strong>. 
-          The following repository provides a robust workflow for handling physiological signals in irregular cycles:
+          The following repository is separate from the Kaggle analysis above. It handles the
+          <a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">PhysioNet mcPHASES dataset</a>
+          and provides a workflow for aligning physiological signals in irregular cycles:
         </p>
         <p>
           <a href="https://github.com/X-Olivia/Menstrual-Cycle-Prediction-from-WearablePhysiological-Data-in-Irregular-Cycles.git" class="btn-metal" target="_blank" rel="noopener">View GitHub Repository</a>
-          <a href="kaggle-p1.html" class="btn-metal">See Kaggle analysis</a>
         </p>
         <p><strong>Path:</strong> <code>new_workspace/data_process</code></p>
-        <p>This directory contains scripts to handle temperature, HRV, and calendar data, specifically designed to address the high variance of irregular profiles.</p>
+        <p>
+          This directory contains scripts for processing temperature, HRV, hormone-linked events, and calendar
+          data from mcPHASES. It is intended for the PhysioNet wearable dataset rather than the Kaggle tabular dataset.
+        </p>
       </div>
     </section>
 
@@ -162,6 +166,7 @@
         <li>App-based cohort papers demonstrate scale, but not necessarily public reuse access <a class="oer-inline-cite" href="#ref-bull">[1]</a> <a class="oer-inline-cite" href="#ref-grieger">[2]</a> <a class="oer-inline-cite" href="#ref-li">[3]</a>.</li>
         <li>Wearable-device studies often release findings rather than longitudinal raw data streams <a class="oer-inline-cite" href="#ref-goodale">[4]</a> <a class="oer-inline-cite" href="#ref-maijala">[5]</a>.</li>
         <li>Open resources such as mcPHASES are therefore especially valuable because they allow method comparison and pipeline debugging <a class="oer-inline-cite" href="#ref-mcphases">[6]</a>.</li>
+        <li>Some company-held datasets are not openly downloadable but may still be reachable through research partnerships or application-based access. For example, Clue explicitly describes collaboration criteria for researchers using de-identified data, and Oura advertises data access through its research program. In those cases, access is negotiated rather than public and usually depends on ethics, privacy, and commercial terms. <a href="https://helloclue.com/articles/about-clue/scientific-research-at-clue" target="_blank" rel="noopener">Clue</a> <a href="https://organizations.ouraring.com/solutions/research" target="_blank" rel="noopener">Oura</a></li>
       </ul>
     </section>
 

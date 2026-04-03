@@ -105,18 +105,21 @@
     </section>
 
     <section class="oer-section" id="starter-code">
-      <h2>入门代码：从原始数据到模型就绪特征</h2>
+      <h2>PhysioNet mcPHASES 数据集的入门代码</h2>
       <div class="oer-card accent-card">
-        <h3>推荐：数据处理工作流</h3>
+        <h3>推荐：PhysioNet / mcPHASES 数据处理工作流</h3>
         <p>
-          月经预测的首要挑战不是模型，而是<strong>数据对齐</strong>。以下仓库提供了一套处理不规则周期中生理信号的稳健工作流：
+          月经预测的首要挑战不是模型，而是<strong>数据对齐</strong>。下面这个仓库和上面的 Kaggle 本地分析是分开的；它处理的是
+          <a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">PhysioNet 上的 mcPHASES 数据集</a>，
+          重点是对不规则周期中的生理信号进行对齐和整理：
         </p>
         <p>
           <a href="https://github.com/X-Olivia/Menstrual-Cycle-Prediction-from-WearablePhysiological-Data-in-Irregular-Cycles.git" class="btn-metal" target="_blank" rel="noopener">查看 GitHub 仓库</a>
-          <a href="kaggle-p1_zh.html" class="btn-metal">查看 Kaggle 分析</a>
         </p>
         <p><strong>路径：</strong> <code>new_workspace/data_process</code></p>
-        <p>该目录包含处理体温、HRV 和日历数据的脚本，专门用于解决不规则周期中的高变异性问题。</p>
+        <p>
+          该目录包含处理 mcPHASES 中体温、HRV、激素相关事件和日历数据的脚本。它面向的是 PhysioNet 的穿戴数据集，而不是 Kaggle 的表格型数据集。
+        </p>
       </div>
     </section>
 
@@ -155,6 +158,7 @@
         <li>基于 App 的群体论文展示了规模，但不一定提供公开的重用权限。</li>
         <li>穿戴设备研究通常发布发现结果，而非纵向的原始数据流。</li>
         <li>像 mcPHASES 这样的开放资源因此显得尤为珍贵，因为它们允许方法比较和管线调试。</li>
+        <li>还有一种情况并不是“完全不开放”，而是不能公开下载，但可以通过研究合作或申请访问的方式获得。例如，Clue 明确写过研究合作使用去标识化数据的条件，Oura 也提供面向研究项目的数据访问计划。此类访问通常不是公开权限，而是需要根据伦理、隐私和商业条款单独协商。<a href="https://helloclue.com/articles/about-clue/scientific-research-at-clue" target="_blank" rel="noopener">Clue</a> <a href="https://organizations.ouraring.com/solutions/research" target="_blank" rel="noopener">Oura</a></li>
       </ul>
     </section>
 
