@@ -482,7 +482,7 @@ tbody tr:last-child td {
 /* Language Toggle Button */
 .lang-switch {
   position: absolute;
-  top: 1rem;
+  top: 1.35rem;
   right: 2rem;
   z-index: 100;
 }
