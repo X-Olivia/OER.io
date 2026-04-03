@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resources &amp; Data — OER Menstrual Prediction</title>
-  <meta name="description" content="Open datasets and data-processing code for menstrual prediction research." />
+  <title>Resources &amp; Data — Menstrual Prediction OER</title>
+  <meta
+    name="description"
+    content="Datasets, data-access realities, and reproducibility guidance for menstrual cycle prediction research."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -18,6 +24,7 @@
         <ul class="oer-nav">
           <li><a href="index.html">Overview</a></li>
           <li><a href="survey.html">Survey</a></li>
+          <li><a href="literature.html">Literature</a></li>
           <li><a href="resources.html" aria-current="page">Resources</a></li>
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html">About</a></li>
@@ -29,46 +36,193 @@
 
   <main class="oer-wrap">
     <h1 class="heading-serif page-title">Resources &amp; Data</h1>
-    <p class="page-subtitle">Open datasets and data-processing code.</p>
+    <p class="page-subtitle">
+      What is openly available, what usually is not, and how a newcomer can still do useful work.
+    </p>
 
-    <section class="oer-section">
-      <h2>Open datasets</h2>
-      <p>Datasets used or referenced in this project for menstrual cycle and ovulation inference.</p>
+    <nav class="oer-toc" aria-label="Resources sections">
+      <a href="#open-data">Open datasets</a>
+      <a href="#local-analysis">Local analysis</a>
+      <a href="#starter-code">Starter code</a>
+      <a href="#open-repos">Open repositories</a>
+      <a href="#restricted">Restricted data</a>
+      <a href="#starter-path">Starter path</a>
+      <a href="#reproducibility">Reproducibility</a>
+    </nav>
+
+    <section class="oer-section" id="open-data">
+      <h2>Publicly accessible datasets</h2>
       <table>
         <thead>
           <tr>
             <th>Dataset</th>
-            <th>Source / link</th>
+            <th>Type</th>
             <th>Scale</th>
-            <th>Notes</th>
+            <th>Why it matters</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>mcPHASES</td>
-            <td><a href="https://www.physionet.org/content/mcphases/1.0.0/" target="_blank" rel="noopener">PhysioNet</a> (DOI: 10.13026/zx6a-2c81)</td>
-            <td>42 participants; two study periods</td>
-            <td>Wearable physiological signals, daily hormone assays (e.g. LH), self-reported menstrual health. Used for physiology-informed, day-level modelling.</td>
+            <td><a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">mcPHASES</a></td>
+            <td>Wearable + hormonal + self-report</td>
+            <td>42 participants across two study periods</td>
+            <td>One of the clearest open datasets for connecting wearables with menstrual-health labels and hormone measures.</td>
           </tr>
           <tr>
-            <td>Menstrual Cycle Data (Kaggle)</td>
-            <td><a href="https://www.kaggle.com/datasets/nikitabisht/menstrual-cycle-data" target="_blank" rel="noopener">Kaggle</a></td>
-            <td>Self-reported cycle records</td>
-            <td>Used for multi-modal self-reported baseline reproduction (e.g. DT, RF, LSTM on cycle-structure features).</td>
+            <td><a href="https://epublications.marquette.edu/data_nfp/7/" target="_blank" rel="noopener">Menstrual Cycle Data (Marquette)</a></td>
+            <td>Natural family planning records</td>
+            <td>Historical human-subject dataset</td>
+            <td>Useful for cycle structure, mucus, fertility-awareness, and non-wearable historical modelling.</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.kaggle.com/datasets/nikitabisht/menstrual-cycle-data" target="_blank" rel="noopener">Kaggle re-hosts and app-style exports</a></td>
+            <td>Mostly self-reported tabular data</td>
+            <td>Varies by upload</td>
+            <td>Convenient for quick experiments, but provenance and preprocessing quality require extra checking. A local analysis page and experiment summary are available on this site.</td>
           </tr>
         </tbody>
       </table>
+      <div class="oer-note">
+        <p>
+          Public access does not mean uniform quality. Always record the label source, missing-data pattern,
+          cohort filters, and whether the dataset reflects real deployment conditions or a more controlled study.
+        </p>
+      </div>
     </section>
 
-    <section class="oer-section">
-      <h2>Data-processing code</h2>
-      <p>Pipeline for hormonal data alignment, ovulation day annotation (LH surge onset/peak + 1 day, multi-peak handling), and construction of temporally aligned cycle-level and day-level representations. Self-reported data: subject-specific mean imputation, cycle-level structural features. Code and usage instructions will be linked here (e.g. GitHub repository).</p>
-      <p><a href="#" class="btn-metal">Download</a></p>
+    <section class="oer-section" id="local-analysis">
+      <h2>Local analysis of the Kaggle dataset</h2>
+      <div class="oer-card accent-card">
+        <h3>Dataset cleaning, feature engineering, and baseline models</h3>
+        <p>
+          I also analysed the Kaggle menstrual cycle dataset locally. This page links the analysis code, the
+          dataset documentation, the cleaned modelling table, and a short summary of the experimental setup
+          and baseline results.
+        </p>
+        <p>
+          <a href="kaggle-p1.html" class="btn-metal">Open analysis page</a>
+          <a href="open_source/P1.ipynb" class="btn-metal">Open analysis code</a>
+        </p>
+      </div>
     </section>
 
-    <section class="oer-section">
-      <h2>Usage notes</h2>
-      <p>mcPHASES: check PhysioNet for citation and license. For ovulation annotation, hormonal measurements are used only as labels, not as model inputs, to simulate wearable-only deployment. Subject-level or cycle-level splitting is recommended to avoid leakage. Kaggle data: see dataset page for terms of use.</p>
+    <section class="oer-section" id="starter-code">
+      <h2>Starter code: From raw data to model-ready features</h2>
+      <div class="oer-card accent-card">
+        <h3>Recommended: Data Processing Workflow</h3>
+        <p>
+          The first challenge in menstrual research is not the model, but the <strong>data alignment</strong>. 
+          The following repository provides a robust workflow for handling physiological signals in irregular cycles:
+        </p>
+        <p>
+          <a href="https://github.com/X-Olivia/Menstrual-Cycle-Prediction-from-WearablePhysiological-Data-in-Irregular-Cycles.git" class="btn-metal" target="_blank" rel="noopener">View GitHub Repository</a>
+          <a href="kaggle-p1.html" class="btn-metal">See Kaggle analysis</a>
+        </p>
+        <p><strong>Path:</strong> <code>new_workspace/data_process</code></p>
+        <p>This directory contains scripts to handle temperature, HRV, and calendar data, specifically designed to address the high variance of irregular profiles.</p>
+      </div>
+    </section>
+
+    <section class="oer-section" id="open-repos">
+      <h2>Curated Open Source Repositories</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>iurteaga/menstrual_cycle_analysis</h3>
+          <p>Implements generative models that explicitly account for user adherence and missingness. Essential for real-world mHealth data.</p>
+          <a href="https://github.com/iurteaga/menstrual_cycle_analysis" target="_blank" rel="noopener">Link</a>
+        </article>
+        <article class="oer-card">
+          <h3>cilab-ufersa/period_cycle_prediction</h3>
+          <p>Focused on LSTM and GRU architectures for cycle length forecasting. Good for benchmarking standard time-series models.</p>
+          <a href="https://github.com/cilab-ufersa/period_cycle_prediction" target="_blank" rel="noopener">Link</a>
+        </article>
+        <article class="oer-card">
+          <h3>lenakmeth/MenstruatioNN</h3>
+          <p>A straightforward multi-step time-series forecasting implementation using RNNs.</p>
+          <a href="https://github.com/lenakmeth/MenstruatioNN" target="_blank" rel="noopener">Link</a>
+        </article>
+        <article class="oer-card">
+          <h3>nhaboudal/SleepReadiness_Predictor</h3>
+          <p>Example of integrating Oura Ring and Natural Cycles data to map physiological shifts across phases.</p>
+          <a href="https://github.com/nhaboudal/MenstrualCycle_SleepReadiness_Predictor" target="_blank" rel="noopener">Link</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="restricted">
+      <h2>Why most influential datasets are not fully open</h2>
+      <p>
+        Large studies based on menstrual-health apps and consumer devices have shaped the field, but the raw
+        datasets behind many of those papers are usually not released openly. Inference from the literature:
+        this is likely due to a mix of privacy constraints, commercial ownership, consent scope, and the high
+        sensitivity of reproductive-health data.
+      </p>
+      <ul>
+        <li>App-based cohort papers demonstrate scale, but not necessarily public reuse access <a class="oer-inline-cite" href="#ref-bull">[1]</a> <a class="oer-inline-cite" href="#ref-grieger">[2]</a> <a class="oer-inline-cite" href="#ref-li">[3]</a>.</li>
+        <li>Wearable-device studies often release findings rather than longitudinal raw data streams <a class="oer-inline-cite" href="#ref-goodale">[4]</a> <a class="oer-inline-cite" href="#ref-maijala">[5]</a>.</li>
+        <li>Open resources such as mcPHASES are therefore especially valuable because they allow method comparison and pipeline debugging <a class="oer-inline-cite" href="#ref-mcphases">[6]</a>.</li>
+      </ul>
+    </section>
+
+    <section class="oer-section" id="starter-path">
+      <h2>A realistic starter path for new researchers</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Option A: strong baseline work</h3>
+          <p>
+            Use self-reported or cycle-history data, build transparent calendar and history baselines, and
+            make the evaluation protocol unusually clean. This is often more publishable than a weak wearable
+            model on noisy labels.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Option B: wearable proof of concept</h3>
+          <p>
+            Use mcPHASES or another well-described dataset to test temperature and cardiovascular features,
+            but define the endpoint carefully and avoid overclaiming generalisability from a small cohort.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Option C: clinically anchored small study</h3>
+          <p>
+            If you can collect your own data, a modest but well-labelled cohort with explicit hormone or LH
+            anchoring may be more scientifically useful than a larger weakly labelled convenience sample.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Option D: evaluation-method paper</h3>
+          <p>
+            A paper on subgrouping irregularity, standardising metrics, or comparing label definitions can be
+            a legitimate contribution because these issues currently block meaningful comparison.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="reproducibility">
+      <h2>Reproducibility checklist</h2>
+      <ol class="oer-steps">
+        <li>State the prediction target explicitly: next bleed, ovulation day, fertile window, or phase.</li>
+        <li>State the label rule explicitly: for example LH onset, LH peak, or peak + 1 day.</li>
+        <li>Describe what information is available at prediction time and what is forbidden.</li>
+        <li>Prefer subject-wise splits when claiming generalisation to unseen people.</li>
+        <li>Report both continuous error and window-based accuracy where appropriate.</li>
+        <li>Describe missingness and adherence rather than silently dropping hard cases.</li>
+        <li>State whether the cohort is regular-only, mixed, or explicitly irregular.</li>
+      </ol>
+    </section>
+
+    <section class="oer-section" id="references">
+      <h2>References</h2>
+      <ol class="oer-ref-list">
+        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-li">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-goodale">Goodale BM, Shilaih M, Falco L, et al. Wearable Sensors Reveal Menses-Driven Changes in Physiology and Enable Prediction of the Fertile Window: Observational Study. <em>Journal of Medical Internet Research</em>. 2019;21(5):e13404. <a href="https://www.jmir.org/2019/5/e13404/" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-maijala">Maijala A, Kinnunen H, Koskimäki H, et al. Nocturnal finger skin temperature in menstrual cycle tracking: ambulatory pilot study using a wearable Oura ring. <em>BMC Women's Health</em>. 2019;19:150. <a href="https://link.springer.com/article/10.1186/s12905-019-0844-9" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-mcphases">Lin B, Li JY, Kalani K, Truong K, Mariakakis A. mcPHASES: A Dataset of Physiological, Hormonal, and Self-reported Events and Symptoms for Menstrual Health Tracking with Wearables. PhysioNet. Version 1.0.0, published September 9, 2025. <a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">Dataset</a></li>
+        <li id="ref-fehring">Fehring RJ. Menstrual Cycle Data. Marquette University e-Publications. 2012. <a href="https://epublications.marquette.edu/data_nfp/7/" target="_blank" rel="noopener">Dataset</a></li>
+      </ol>
     </section>
 
     <footer class="oer-footer">

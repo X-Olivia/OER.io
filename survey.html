@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Survey — OER Menstrual Prediction</title>
-  <meta name="description" content="Field survey: background, menstrual type taxonomy, method taxonomy, performance limits, research hotspots." />
+  <title>Survey — Menstrual Cycle Prediction OER</title>
+  <meta
+    name="description"
+    content="Background survey for menstrual cycle prediction: cycle basics, signal glossary, mathematical task definitions, wearable taxonomy, and evaluation pitfalls."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -18,6 +24,7 @@
         <ul class="oer-nav">
           <li><a href="index.html">Overview</a></li>
           <li><a href="survey.html" aria-current="page">Survey</a></li>
+          <li><a href="literature.html">Literature</a></li>
           <li><a href="resources.html">Resources</a></li>
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html">About</a></li>
@@ -29,70 +36,568 @@
 
   <main class="oer-wrap">
     <h1 class="heading-serif page-title">Field Survey</h1>
-    <p class="page-subtitle">Background, taxonomies, methods, performance limits, and research directions.</p>
+    <p class="page-subtitle">
+      A structured introduction to the field: physiology, signal vocabulary, mathematical task setup,
+      wearable sensing categories, and the evaluation problems that make papers hard to compare.
+    </p>
 
-    <section class="oer-section">
-      <h2>Background &amp; problem</h2>
-      <p>Menstrual cycle (MC) inference is challenging due to substantial inter- and intra-individual variability, sparse real-world observations, and the indirect nature of physiological proxies. Dysmenorrhoea and related discomforts are highly prevalent and affect daily functioning; care remains largely manual and episodic. From a physiological perspective, the MC is a periodic endocrine-regulated process; ovulation, rather than bleeding, is the key temporal anchor—the luteal phase is relatively stable (e.g. 12–14 days) while the follicular phase varies. In embodied and robotic settings, MC prediction supports proactive decision-making under sparse, multimodal sensing rather than retrospective analysis alone.</p>
-    </section>
+    <nav class="oer-toc" aria-label="Survey sections">
+      <a href="#orientation">Orientation</a>
+      <a href="#basics">Cycle basics</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#math-definitions">Mathematical definitions</a>
+      <a href="#methods">Method families</a>
+      <a href="#signals">Wearable signals</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#gaps">Research gaps</a>
+      <a href="#references">References</a>
+    </nav>
 
-    <section class="oer-section">
-      <h2>Menstrual type taxonomy</h2>
-      <p>Cycle type affects which modelling assumptions apply. Ovulation-based frameworks are not universally applicable: in anovulatory cycles, characteristic progesterone-related patterns are absent.</p>
+    <section class="oer-section" id="orientation">
+      <h2>Orientation for new researchers</h2>
+      <div class="oer-note">
+        <p>
+          The field mixes several related tasks: predicting the next bleed, estimating ovulation timing,
+          classifying cycle phase, and estimating the fertile window. These tasks share biology, but they do
+          not share identical labels, metrics, or deployment constraints.
+        </p>
+      </div>
       <table>
         <thead>
-          <tr><th>Type</th><th>Description</th></tr>
+          <tr>
+            <th>Target</th>
+            <th>Typical label source</th>
+            <th>Common output</th>
+            <th>Main difficulty</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Ovulatory cycle</td><td>Functional luteal phase; ovulation-related physiological patterns (e.g. post-ovulatory thermal shift, HR/HRV changes) can be used for inference.</td></tr>
-          <tr><td>Anovulatory cycle</td><td>No functional luteal phase; methods relying on ovulation or progesterone shifts are not applicable.</td></tr>
-          <tr><td>Regular vs irregular</td><td>Cycle length and phase proportions vary within and across individuals; irregular cycles challenge calendar-based and many physiology-based methods.</td></tr>
+          <tr>
+            <td>Next menstruation onset</td>
+            <td>Self-tracked bleeding logs</td>
+            <td>Next date or days-until-onset</td>
+            <td>Strongly affected by variable follicular timing and logging quality</td>
+          </tr>
+          <tr>
+            <td>Ovulation day</td>
+            <td>Urinary LH, ultrasound, progesterone, or proxy rules</td>
+            <td>Single day estimate or error window</td>
+            <td>Operational definitions differ substantially across papers</td>
+          </tr>
+          <tr>
+            <td>Fertile window</td>
+            <td>Derived from ovulation estimate or fertility-awareness rules</td>
+            <td>Binary daily probability or start/end window</td>
+            <td>Often clinically sensitive and definition-dependent</td>
+          </tr>
+          <tr>
+            <td>Cycle phase</td>
+            <td>Calendar rules, hormone assays, or latent-state labels</td>
+            <td>Daily phase class</td>
+            <td>Phase boundaries may be operational rather than direct biological truth</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <section class="oer-section">
-      <h2>Research method taxonomy</h2>
-      <p>Computational approaches can be grouped by input (bleeding-only vs physiological signals) and by modelling paradigm (statistical/calendar vs physiology-informed vs data-driven).</p>
+    <section class="oer-section" id="basics">
+      <h2>Menstrual cycle basics that matter for modelling</h2>
+      <p>
+        Clinical guidance and large observational datasets both reject the idea of a universally fixed
+        28-day cycle. For modelling, the important point is not only that the cycle is variable, but that the
+        variability is structured: ovulation is a short event, the follicular phase is often the main source
+        of timing variability, and the luteal phase is usually more stable than the pre-ovulatory portion of
+        the cycle <a class="oer-inline-cite" href="#ref-acog">[1]</a>
+        <a class="oer-inline-cite" href="#ref-endotext">[2]</a>
+        <a class="oer-inline-cite" href="#ref-bull">[3]</a>.
+      </p>
       <table>
         <thead>
-          <tr><th>Category</th><th>Description</th></tr>
+          <tr>
+            <th>Phase</th>
+            <th>What happens</th>
+            <th>Relative stability</th>
+            <th>Why modellers care</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Calendar-based</td><td>Use only self-reported bleeding onset; moving averages, Bayesian cycle-length models, Hidden Semi-Markov Models (HSMM). Scalable and low burden but weak in irregular cycles.</td></tr>
-          <tr><td>Physiology-based (wearable)</td><td>Nocturnal/resting signals (WST, HR, HRV, etc.) with ovulation anchored by urinary LH (or similar). Day-level features, then ovulation inference and/or menstrual prediction.</td></tr>
-          <tr><td>Data-driven ML</td><td>Gradient boosting, RF, SVM, etc. Learn mappings from physiological features to phase or events; performance degrades with irregularity and noise.</td></tr>
-          <tr><td>Physiology-informed signal processing</td><td>Exploit morphological patterns (e.g. biphasic temperature) to identify ovulation; high accuracy when patterns are clear, abstain when absent.</td></tr>
-          <tr><td>Probabilistic / density-based</td><td>Kernel density estimation, logistic regression for fertile window or menstrual onset; calibrated uncertainty, often robust only in regular cohorts.</td></tr>
+          <tr>
+            <td>Menstrual phase</td>
+            <td>Bleeding marks day 1 of a new cycle</td>
+            <td>Observable, but self-tracking can be noisy</td>
+            <td>Often the easiest event to collect at scale</td>
+          </tr>
+          <tr>
+            <td>Follicular phase</td>
+            <td>Follicle recruitment and hormone-driven preparation before ovulation</td>
+            <td>Usually the most variable segment</td>
+            <td>Much of onset-prediction error originates here</td>
+          </tr>
+          <tr>
+            <td>Ovulation</td>
+            <td>Release of the oocyte, often anchored with LH-based testing</td>
+            <td>Short event and difficult to observe directly</td>
+            <td>Useful anchor for downstream countdown-style models</td>
+          </tr>
+          <tr>
+            <td>Luteal phase</td>
+            <td>Post-ovulatory progesterone-dominant phase</td>
+            <td>Relatively more stable</td>
+            <td>Explains why predicting menses after ovulation is often easier</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>Normal variation is common; perfect regularity is not the right default assumption <a class="oer-inline-cite" href="#ref-symul2019">[4]</a> <a class="oer-inline-cite" href="#ref-li2020">[5]</a>.</li>
+        <li>Ovulation does not reliably happen at cycle midpoint, so midpoint counting is structurally weak <a class="oer-inline-cite" href="#ref-wilcox2000">[6]</a>.</li>
+        <li>Irregularity is heterogeneous: long cycles, short but stable cycles, and high-variability cycles may need different modelling assumptions.</li>
+      </ul>
+    </section>
+
+    <section class="oer-section" id="glossary">
+      <h2>Glossary of signals and menstrual-prediction terms</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Type</th>
+            <th>Meaning and why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BBT (Basal body temperature)</td>
+            <td>Temperature</td>
+            <td>The lowest body temperature at rest, traditionally measured immediately after waking. It remains a classic reference for biphasic cycle patterns.</td>
+          </tr>
+          <tr>
+            <td>Core body temperature</td>
+            <td>Temperature</td>
+            <td>Internal temperature closer to true thermoregulation. Harder to measure continuously in daily life than skin-based proxies.</td>
+          </tr>
+          <tr>
+            <td>WST (Wrist skin temperature)</td>
+            <td>Wearable temperature</td>
+            <td>Nightly or continuous temperature captured at the wrist. Useful at scale, but influenced by ambient conditions and device placement <a class="oer-inline-cite" href="#ref-zhu2021">[7]</a>.</td>
+          </tr>
+          <tr>
+            <td>Finger / distal skin temperature</td>
+            <td>Wearable temperature</td>
+            <td>Nocturnal peripheral temperature, often measured by rings. Can show clear cycle-related shifts in free-living data <a class="oer-inline-cite" href="#ref-maijala2019">[8]</a>.</td>
+          </tr>
+          <tr>
+            <td>Peripheral body temperature</td>
+            <td>Wearable temperature</td>
+            <td>A broader label for skin-surface temperature proxies used by some consumer devices; not interchangeable with BBT or core temperature.</td>
+          </tr>
+          <tr>
+            <td>HR (Heart rate)</td>
+            <td>Cardiovascular</td>
+            <td>Beats per minute. Many studies use resting, nocturnal, or sleeping HR rather than daytime HR because activity introduces noise <a class="oer-inline-cite" href="#ref-shilaih2017">[9]</a>.</td>
+          </tr>
+          <tr>
+            <td>RHR / sleeping HR</td>
+            <td>Cardiovascular</td>
+            <td>Heart rate during rest or sleep. Often more stable than daytime HR and increasingly used for phase classification and ovulation detection <a class="oer-inline-cite" href="#ref-masuda2025">[10]</a>.</td>
+          </tr>
+          <tr>
+            <td>IBI (Inter-beat interval)</td>
+            <td>Cardiovascular</td>
+            <td>Time interval between beats. HRV metrics are derived from it.</td>
+          </tr>
+          <tr>
+            <td>HRV (Heart rate variability)</td>
+            <td>Autonomic</td>
+            <td>Beat-to-beat variability, often summarised as RMSSD or frequency-domain measures. Used as a proxy of autonomic regulation across the cycle.</td>
+          </tr>
+          <tr>
+            <td>RR (Respiratory rate)</td>
+            <td>Respiratory</td>
+            <td>Breaths per minute. Some wearables estimate it during sleep and use it as a complementary cycle signal.</td>
+          </tr>
+          <tr>
+            <td>EDA (Electrodermal activity)</td>
+            <td>Autonomic</td>
+            <td>Skin conductance related to sympathetic arousal. Appears in some multimodal passive-sensing studies, but is far less standard than temperature or HR.</td>
+          </tr>
+          <tr>
+            <td>Skin perfusion / blood flow</td>
+            <td>Peripheral physiology</td>
+            <td>Changes in vascular tone can contribute to skin-temperature and pulse patterns, especially in distal body sites.</td>
+          </tr>
+          <tr>
+            <td>Sleep timing and duration</td>
+            <td>Behavioral context</td>
+            <td>Often used as covariates or indirect signals because sleep pattern changes can co-vary with the cycle and with signal quality.</td>
+          </tr>
+          <tr>
+            <td>Activity / steps</td>
+            <td>Behavioral context</td>
+            <td>Useful for contextualising daytime physiology and identifying high-noise periods.</td>
+          </tr>
+          <tr>
+            <td>LH (Luteinizing hormone)</td>
+            <td>Hormonal biomarker</td>
+            <td>Urinary LH surges shortly before ovulation. Often treated as the pragmatic reference event for ovulation-focused wearable studies.</td>
+          </tr>
+          <tr>
+            <td>OPK (Ovulation predictor kit)</td>
+            <td>Hormonal test</td>
+            <td>Consumer urine test strip used to detect LH surge. Important because many "wearable" studies still depend on OPKs for labels.</td>
+          </tr>
+          <tr>
+            <td>E2 / estradiol</td>
+            <td>Hormonal biomarker</td>
+            <td>A key ovarian hormone driving follicular development. Useful for clinical interpretation and sometimes for hybrid predictive models.</td>
+          </tr>
+          <tr>
+            <td>E3G (Estrone-3-glucuronide)</td>
+            <td>Urinary hormone metabolite</td>
+            <td>A urinary estrogen metabolite used in fertility-monitoring systems. More common in fertility-awareness datasets than in consumer wearables.</td>
+          </tr>
+          <tr>
+            <td>Progesterone</td>
+            <td>Hormonal biomarker</td>
+            <td>Post-ovulatory hormone strongly linked to the thermal shift and luteal-phase physiology.</td>
+          </tr>
+          <tr>
+            <td>PdG (Pregnanediol glucuronide)</td>
+            <td>Urinary hormone metabolite</td>
+            <td>A urinary metabolite of progesterone used to retrospectively support ovulation confirmation.</td>
+          </tr>
+          <tr>
+            <td>FSH (Follicle-stimulating hormone)</td>
+            <td>Hormonal biomarker</td>
+            <td>Important for cycle physiology and some clinical workups, but less commonly available in real-world prediction datasets.</td>
+          </tr>
+          <tr>
+            <td>Anovulatory cycle</td>
+            <td>Cycle type</td>
+            <td>A cycle without ovulation. This matters because ovulation-anchored assumptions may fail entirely in such cycles.</td>
+          </tr>
+          <tr>
+            <td>Fertile window</td>
+            <td>Task concept</td>
+            <td>The days during which intercourse can lead to conception; often defined relative to ovulation rather than directly observed.</td>
+          </tr>
+          <tr>
+            <td>Subject-wise split</td>
+            <td>Evaluation design</td>
+            <td>Train and test users are disjoint. This is the safer evaluation protocol when claiming generalisation to unseen people.</td>
+          </tr>
+          <tr>
+            <td>Prospective / causal prediction</td>
+            <td>Deployment constraint</td>
+            <td>Prediction at day <em>t</em> uses only information available up to day <em>t</em>; no future observations from the current cycle may leak in.</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <section class="oer-section">
-      <h2>Overview of existing work</h2>
-      <p>Representative physiological correlates from wearables include: wrist skin temperature (WST) with post-ovulatory elevation; fingertip temperature aligned with ovulation; nocturnal minimum HR (elevated in luteal phase); HF-HRV with peri-ovulatory decline. Ovulation annotation is usually based on urinary LH (surge onset/peak + 1 day, etc.); studies differ in exact definitions. Data-driven and physiology-informed methods both face limits from signal noise, behavioural variability, and annotation uncertainty. Performance is consistently better when predicting menstruation from inferred ovulation than from direct ovulation detection, due to luteal phase stability.</p>
+    <section class="oer-section" id="math-definitions">
+      <h2>Mathematical task definitions</h2>
+      <p>
+        The equations below are rendered as HTML, not Markdown. They are intentionally simple because the
+        point here is to make the task framing explicit before discussing model architecture.
+      </p>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Notation</h3>
+          <table class="tight-table">
+            <tbody>
+              <tr><td><strong>x<sub>1:t</sub></strong></td><td>Observed signals up to day <em>t</em></td></tr>
+              <tr><td><strong>h</strong></td><td>User history from earlier cycles</td></tr>
+              <tr><td><strong>m</strong></td><td>Next menstruation onset</td></tr>
+              <tr><td><strong>o</strong></td><td>Ovulation day</td></tr>
+              <tr><td><strong>y<sub>t</sub></strong></td><td>Phase label for day <em>t</em></td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="oer-card">
+          <h3>Deployment rule</h3>
+          <div class="oer-equation">
+            <span class="oer-equation-main">Prediction at day <em>t</em> may use only x<sub>1:t</sub> and h</span>
+          </div>
+          <p class="mb-0">
+            This is the practical daily-prediction setting. Retrospective full-cycle estimation is a different
+            and easier problem.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>1. Next-menses onset prediction</h3>
+          <div class="oer-equation">
+            <span class="oer-equation-main">m̂<sub>t</sub> = f(x<sub>1:t</sub>, h)</span>
+          </div>
+          <p>
+            The model outputs either the next start date or the remaining days until next onset. MAE in days
+            is common, but coverage within a fixed window should also be reported.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>2. Daily phase classification</h3>
+          <div class="oer-equation">
+            <span class="oer-equation-main">ŷ<sub>t</sub> ∈ {menstrual, follicular, ovulatory, luteal}</span>
+          </div>
+          <p>
+            This is a day-level state-estimation problem. Different papers use different phase granularity, so
+            labels are not always directly comparable.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>3. Ovulation-day estimation</h3>
+          <div class="oer-equation">
+            <span class="oer-equation-main">ô = arg max<sub>τ ≤ t</sub> P(O<sub>τ</sub> = 1 | x<sub>1:t</sub>, h)</span>
+          </div>
+          <p>
+            In a prospective setting the estimate can only rely on observed data so far. In a retrospective
+            setting the full cycle may be available, which usually yields better numbers.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>4. Fertile-window detection</h3>
+          <div class="oer-equation">
+            <span class="oer-equation-main">P(FW<sub>t</sub> = 1 | x<sub>1:t</sub>, h)</span>
+          </div>
+          <p>
+            This is usually derived from ovulation probability or fertility-awareness rules, so it inherits
+            label uncertainty from upstream ovulation definitions.
+          </p>
+        </article>
+      </div>
     </section>
 
-    <section class="oer-section">
-      <h2>Performance limits</h2>
-      <p>Reported ranges from the literature (regular ovulatory cycles, dense sampling). Sparse or irregular settings typically see larger errors.</p>
+    <section class="oer-section" id="methods">
+      <h2>Method families</h2>
       <table>
         <thead>
-          <tr><th>Paradigm / metric</th><th>Approx. range</th></tr>
+          <tr>
+            <th>Family</th>
+            <th>Inputs</th>
+            <th>Typical methods</th>
+            <th>Strengths</th>
+            <th>Weaknesses</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Data-driven ML (ovulation MAE)</td><td>≈ 2–4 days; lowest ≈ 2 days in favourable sub-cohorts</td></tr>
-          <tr><td>Probabilistic (fertile window AUC; menstrual ±2 d)</td><td>AUC ≈ 0.87; ~83% within ±2 days</td></tr>
-          <tr><td>Physiology-informed (ovulation MAE; ±2 d accuracy)</td><td>MAE ≈ 1–2 days in detectable cycles; 78–89% ±2-day</td></tr>
-          <tr><td>Calendar-based (irregular cycles)</td><td>Errors can exceed ±8 days</td></tr>
+          <tr>
+            <td>Calendar / history-based</td>
+            <td>Past bleeding dates and cycle statistics</td>
+            <td>Forward counting, moving averages, Bayesian priors, hidden-state models</td>
+            <td>Scalable, cheap, widely deployable</td>
+            <td>Weak when history is short or cycles are unstable</td>
+          </tr>
+          <tr>
+            <td>Wearable physiology</td>
+            <td>Continuous or nightly sensor streams</td>
+            <td>Feature engineering, random forests, boosting, sequence models, signal-processing rules</td>
+            <td>Can exploit physiological change rather than dates alone</td>
+            <td>High missingness, device heterogeneity, small labelled cohorts</td>
+          </tr>
+          <tr>
+            <td>Clinical / biomarker-driven</td>
+            <td>LH tests, ultrasound, blood draws, progesterone, estrogen markers</td>
+            <td>Rule-based anchoring, fertility monitoring, diagnostic assessment</td>
+            <td>Stronger biological reference</td>
+            <td>High burden and less suited to low-friction deployment</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <section class="oer-section">
-      <h2>Research hotspots &amp; directions to avoid</h2>
-      <p><strong>Current focus:</strong> Ovulation-centred inference under sparse or irregular sampling; multimodal wearable features with hormonally verified labels; uncertainty-aware and robustness to missing data; integration into embodied/robotic systems for proactive support.</p>
-      <p><strong>Directions to treat with caution or avoid:</strong> Purely calendar-based methods for irregular populations without physiological signals; assuming dense daily sampling in long-term deployment; treating ovulation annotation as a single gold standard (operational definitions vary); overfitting complex models on small cohorts without strong regularisation or physiological grounding.</p>
+    <section class="oer-section" id="signals">
+      <h2>Wearable signal taxonomy</h2>
+      <p>
+        Wearable cycle-prediction studies do not all measure the same "temperature" or the same "heart rate".
+        Body site, time of day, aggregation strategy, and accompanying hormone labels all change the problem
+        definition <a class="oer-inline-cite" href="#ref-shilaih2018">[11]</a>
+        <a class="oer-inline-cite" href="#ref-goodale2019">[12]</a>
+        <a class="oer-inline-cite" href="#ref-wang2025">[13]</a>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Signal family</th>
+            <th>Examples in the literature</th>
+            <th>Typical use</th>
+            <th>Main caveat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Temperature</td>
+            <td>BBT, wrist skin temperature, finger skin temperature, distal or peripheral temperature, overnight temperature profiles</td>
+            <td>Ovulation estimation, luteal shift detection, next-menses prediction</td>
+            <td>Signal meaning changes by body site and by whether data are raw, nightly-averaged, or phase-aggregated</td>
+          </tr>
+          <tr>
+            <td>Cardiovascular</td>
+            <td>Sleeping HR, resting HR, inter-beat interval, HRV, pulse rate</td>
+            <td>Phase classification, ovulation-day estimation, multimodal fusion</td>
+            <td>Highly sensitive to stress, illness, exercise load, and sleep disruption</td>
+          </tr>
+          <tr>
+            <td>Respiratory and autonomic</td>
+            <td>Respiratory rate, electrodermal activity, skin conductance, perfusion-related measures</td>
+            <td>Complementary passive-sensing features in multimodal models</td>
+            <td>Less standardised across devices and less commonly available in open datasets</td>
+          </tr>
+          <tr>
+            <td>Sleep and activity context</td>
+            <td>Sleep duration, sleep timing, awakenings, steps, activity counts</td>
+            <td>Context adjustment, feature fusion, quality control</td>
+            <td>Often reflects behaviour as much as physiology</td>
+          </tr>
+          <tr>
+            <td>Symptoms and self-report</td>
+            <td>Cramps, discharge, mood, bleeding intensity, medication use</td>
+            <td>Hybrid wearable-plus-diary models</td>
+            <td>Reporting adherence and subjectivity affect label reliability</td>
+          </tr>
+          <tr>
+            <td>Reference biomarkers</td>
+            <td>Urinary LH, E3G, PdG, serum estradiol, progesterone, FSH, ultrasound</td>
+            <td>Ground-truth anchoring, subgroup definition, hybrid clinical models</td>
+            <td>Usually unavailable at deployment time, so they can label but not necessarily power a real-world model</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Temperature signals</h3>
+          <p>
+            Temperature is still the most established physiological route because progesterone-linked thermal
+            change gives a plausible post-ovulatory signal. But BBT, wrist temperature, finger temperature,
+            and peripheral skin temperature are not interchangeable <a class="oer-inline-cite" href="#ref-maijala2019">[8]</a>
+            <a class="oer-inline-cite" href="#ref-zhu2021">[7]</a>
+            <a class="oer-inline-cite" href="#ref-niggli2023">[14]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Cardiovascular signals</h3>
+          <p>
+            Sleeping HR and HRV increasingly appear as useful complements to temperature because they track
+            autonomic and circulatory shifts across the cycle. They may help when temperature is noisy, but
+            they also respond strongly to stress, sleep irregularity, and illness <a class="oer-inline-cite" href="#ref-shilaih2017">[9]</a>
+            <a class="oer-inline-cite" href="#ref-masuda2025">[10]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Multimodal passive sensing</h3>
+          <p>
+            Recent work combines temperature, cardiac signals, sleep, activity, and symptoms rather than
+            assuming a single biomarker will solve the task. This is often more realistic, but it also makes
+            feature provenance and missingness harder to interpret <a class="oer-inline-cite" href="#ref-goodale2019">[12]</a>
+            <a class="oer-inline-cite" href="#ref-yu2022">[15]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Hormones as labels, not just signals</h3>
+          <p>
+            LH, E3G, PdG, estradiol, progesterone, and FSH matter even when the deployment model is
+            "wearable-only". They often define the labels or validate subgroup physiology, so understanding
+            them is necessary for reading the wearable literature correctly.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="evaluation">
+      <h2>Why evaluation is messy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Source of mismatch</th>
+            <th>Example</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Endpoint mismatch</td>
+            <td>Ovulation day vs fertile window vs next menstruation</td>
+            <td>Reported numbers are not directly comparable</td>
+          </tr>
+          <tr>
+            <td>Label mismatch</td>
+            <td>LH onset, LH peak, peak + 1 day, progesterone confirmation, or calendar proxy</td>
+            <td>Two studies may target different operational definitions of the "same" event</td>
+          </tr>
+          <tr>
+            <td>Split mismatch</td>
+            <td>Random days, random cycles, leave-last-cycle-out, or subject-wise split</td>
+            <td>Leakage risk changes sharply with the split rule</td>
+          </tr>
+          <tr>
+            <td>Cohort mismatch</td>
+            <td>Regular-only, fertility-aware users, or mixed real-world populations</td>
+            <td>Easier cohorts can make methods look stronger than they are</td>
+          </tr>
+          <tr>
+            <td>Metric mismatch</td>
+            <td>MAE, within ±2 days, AUC, sensitivity, PPV</td>
+            <td>Different metrics reward different behaviours</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>Subject-wise evaluation is usually the safer choice when the claim is generalisation to unseen people.</li>
+        <li>Window-based accuracy should be paired with a continuous error measure.</li>
+        <li>Papers should explicitly state whether predictions are daily prospective or retrospective full-cycle estimates.</li>
+      </ul>
+    </section>
+
+    <section class="oer-section" id="gaps">
+      <h2>Research gaps that matter now</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card accent-card">
+          <h3>Irregular populations are still under-analysed</h3>
+          <p>
+            Many studies still compare "regular" and "irregular" users as if irregularity were a single
+            condition. That is too coarse for both interpretation and product design.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>Signal taxonomies remain underspecified</h3>
+          <p>
+            Too many papers say "temperature" or "heart rate" without clearly stating body site, aggregation,
+            or whether the values are nocturnal, resting, or continuous.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>Open data remain much smaller than commercial datasets</h3>
+          <p>
+            That keeps replication hard and makes subgroup analysis expensive in terms of statistical power.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>Uncertainty is still underreported</h3>
+          <p>
+            Real users need calibrated confidence or abstention behaviour, not only a single date prediction.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="references">
+      <h2>References</h2>
+      <ol class="oer-ref-list">
+        <li id="ref-acog">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Committee Opinion No. 651. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">Publisher</a></li>
+        <li id="ref-endotext">Rosenfield RL, Ehrmann DA. The Normal Menstrual Cycle and the Control of Ovulation. In: <em>Endotext</em>. Updated 2023. <a href="https://www.ncbi.nlm.nih.gov/books/NBK279054/" target="_blank" rel="noopener">NCBI Bookshelf</a></li>
+        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://doi.org/10.1038/s41746-019-0152-7" target="_blank" rel="noopener">DOI</a></li>
+        <li id="ref-symul2019">Symul L, Wac K, Hillard PJA, Salathé M. Assessment of menstrual health status and evolution through mobile apps for fertility awareness. <em>npj Digital Medicine</em>. 2019;2:64. <a href="https://doi.org/10.1038/s41746-019-0139-4" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/31341953/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-li2020">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://doi.org/10.1038/s41746-020-0269-8" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-wilcox2000">Wilcox AJ, Dunson D, Baird DD. The timing of the fertile window in the menstrual cycle: day specific estimates from a prospective study. <em>BMJ</em>. 2000;321(7271):1259-1262. <a href="https://doi.org/10.1136/bmj.321.7271.1259" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/11082086/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-zhu2021">Zhu TY, Rothenbühler M, Hamvas G, et al. The Accuracy of Wrist Skin Temperature in Detecting Ovulation Compared to Basal Body Temperature. <em>Journal of Medical Internet Research</em>. 2021;23(6):e20710. <a href="https://doi.org/10.2196/20710" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/34100763/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-maijala2019">Maijala A, Kinnunen H, Koskimäki H, et al. Nocturnal finger skin temperature in menstrual cycle tracking: ambulatory pilot study using a wearable Oura ring. <em>BMC Women's Health</em>. 2019;19:150. <a href="https://doi.org/10.1186/s12905-019-0844-9" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/31783840/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-shilaih2017">Shilaih M, Goodale BM, Falco L, Kübler F, De Clerck V, Leeners B. Pulse Rate Measurement During Sleep Using Wearable Sensors, and Its Correlation With the Menstrual Cycle Phases. <em>Scientific Reports</em>. 2017;7:1294. <a href="https://doi.org/10.1038/s41598-017-01433-9" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/28465583/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-masuda2025">Masuda H, Okada S, Shiozawa N, et al. Machine learning model for menstrual cycle phase classification and ovulation day detection based on sleeping heart rate under free-living conditions. <em>Computer Methods and Programs in Biomedicine</em>. 2025;109705. <a href="https://doi.org/10.1016/j.compbiomed.2025.109705" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/39889448/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-shilaih2018">Shilaih M, Degroote L, Falco L, Kübler F, Leeners B. Modern fertility awareness methods: wrist wearables capture the changes in temperature associated with the menstrual cycle. <em>Bioscience Reports</em>. 2018;38(6):BSR20171279. <a href="https://doi.org/10.1042/BSR20171279" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/29175999/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-goodale2019">Goodale BM, Shilaih M, Falco L, et al. Wearable Sensors Reveal Menses-Driven Changes in Physiology and Enable Prediction of the Fertile Window. <em>Journal of Medical Internet Research</em>. 2019;21(4):e13404. <a href="https://doi.org/10.2196/13404" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/30998226/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-wang2025">Wang Y, Park J, Zhang CY, et al. Performance of algorithms using wrist temperature for retrospective ovulation day estimate and next menses start day prediction. <em>Human Reproduction</em>. 2025;40:469-478. <a href="https://doi.org/10.1093/humrep/deaf005" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/39881571/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-niggli2023">Niggli A, Rothenbühler M, Sachs M, Leeners B. Can Wrist-Worn Medical Devices Correctly Identify Ovulation? <em>Sensors</em>. 2023;23(24):9730. <a href="https://doi.org/10.3390/s23249730" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/38139575/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-yu2022">Yu JL, Su YF, Zhang C, et al. Tracking of menstrual cycles and prediction of the fertile window via measurements of basal body temperature and heart rate as well as machine-learning algorithms. <em>Reproductive Biology and Endocrinology</em>. 2022;20:118. <a href="https://doi.org/10.1186/s12958-022-00993-4" target="_blank" rel="noopener">DOI</a></li>
+      </ol>
     </section>
 
     <footer class="oer-footer">

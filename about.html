@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — OER Menstrual Prediction</title>
-  <meta name="description" content="About this OER and author." />
+  <title>About — Menstrual Prediction OER</title>
+  <meta name="description" content="About this open educational resource and its editorial goals." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -18,6 +21,7 @@
         <ul class="oer-nav">
           <li><a href="index.html">Overview</a></li>
           <li><a href="survey.html">Survey</a></li>
+          <li><a href="literature.html">Literature</a></li>
           <li><a href="resources.html">Resources</a></li>
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
@@ -29,20 +33,76 @@
 
   <main class="oer-wrap">
     <h1 class="heading-serif page-title">About</h1>
-    <p class="page-subtitle">This OER and its author.</p>
+    <p class="page-subtitle">What this OER is trying to do, and how to read it.</p>
 
     <section class="oer-section">
-      <h2>About this OER</h2>
-      <p>This OER accompanies the project “An Embodied Care Robot Supported by Physiological Menstrual Cycle Inference.” It provides a structured survey of existing work, taxonomies, performance limits, and research directions; open datasets and data-processing code; and the interim report, implementation notes, and preliminary results. The aim is to support reuse, citation, and further work in menstrual prediction and cycle inference, especially under sparse sensing and embodied deployment.</p>
+      <h2>Purpose</h2>
+      <p>
+        This site is an open educational resource for menstrual cycle prediction research. It is written to
+        help new researchers enter the area without immediately getting lost in inconsistent terminology,
+        mixed evaluation protocols, or the false simplicity of the 28-day cycle template.
+      </p>
+      <p>
+        The current version is aimed at three audiences: newcomers who need a map of the field, researchers
+        who want a clearer overview of available data and open problems, and collaborators who need a concise
+        explanation of the present project direction.
+      </p>
     </section>
 
     <section class="oer-section">
-      <h2>Author</h2>
-       </section>
+      <h2>Editorial principles</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Newcomer-first structure</h3>
+          <p>
+            The site explains the biology, then the method families, then the dataset and evaluation issues.
+            That order is deliberate.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Primary-source citations</h3>
+          <p>
+            Where possible, pages point to primary papers, clinical guidance, and dataset pages rather than
+            summary posts.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Distinguish evidence routes</h3>
+          <p>
+            Calendar, wearable, and clinical approaches are kept separate so their assumptions and tradeoffs
+            stay visible.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Be explicit about uncertainty</h3>
+          <p>
+            The site intentionally highlights irregular-cycle difficulty, label ambiguity, and the limits of
+            public data access.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section">
+      <h2>Author / project context</h2>
+      <p>
+        This OER accompanies the research project on menstrual cycle prediction from wearable physiological
+        data, with a particular interest in irregular-cycle analysis, personalisation, and practical support
+        for future embodied or assistive systems.
+      </p>
+      <p>
+        The site content is currently in English to match the underlying report and research literature. A
+        bilingual version could be added later if public-facing outreach becomes a priority.
+      </p>
+    </section>
 
     <section class="oer-section">
       <h2>Changelog</h2>
-      <p>Initial OER populated from Interim Report draft (Intrim_Report_draft1__Copy_): survey from literature review and introduction; resources from mcPHASES and Kaggle dataset references; research from methodology, implementation, and progress chapters; about and license placeholders filled.</p>
+      <ul>
+        <li>2026-04-03: Reframed the site around newcomer guidance, added menstrual basics, method families, research gaps, and page-level references.</li>
+        <li>2026-04-03: Expanded the resources page to distinguish open datasets from restricted-data realities and added a reproducibility checklist.</li>
+        <li>2026-04-03: Reworked citation and license guidance so the site no longer contains empty placeholder sections.</li>
+      </ul>
     </section>
 
     <footer class="oer-footer">

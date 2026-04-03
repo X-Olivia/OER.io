@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OER — Menstrual Cycle Prediction Research</title>
-  <meta name="description" content="Open Educational Resource: survey, datasets, code, and papers on menstrual prediction and cycle inference." />
+  <title>OER for Menstrual Cycle Prediction Research</title>
+  <meta
+    name="description"
+    content="A newcomer-friendly open educational resource on menstrual cycle prediction, wearable sensing, datasets, evaluation issues, and irregular-cycle research."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -18,6 +24,7 @@
         <ul class="oer-nav">
           <li><a href="index.html" aria-current="page">Overview</a></li>
           <li><a href="survey.html">Survey</a></li>
+          <li><a href="literature.html">Literature</a></li>
           <li><a href="resources.html">Resources</a></li>
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html">About</a></li>
@@ -29,52 +36,170 @@
 
   <main class="oer-wrap">
     <section class="oer-hero">
-      <h1 class="heading-serif page-title">Menstrual Cycle Prediction &amp; Inference</h1>
-      <p class="lead">An open educational resource for existing work, taxonomies, datasets, code, and research outputs in menstrual prediction and cycle inference—situated in the context of embodied care and sparse physiological sensing.</p>
-    </section>
-
-    <section class="oer-section">
-      <h2>What this OER contains</h2>
-      <div class="oer-card">
-        <h3>Field survey</h3>
-        <p>Background, problem definition, physiological constraints (ovulation as anchor; ovulatory vs anovulatory cycles), physiological correlates of ovulation from wearables, and a taxonomy of computational approaches with reported performance limits and research directions.</p>
-      </div>
-      <div class="oer-card">
-        <h3>Taxonomies</h3>
-        <p>Menstrual type classification (e.g. ovulatory vs anovulatory; regular vs irregular) and research method classification (calendar-based, physiology-based; data-driven vs physiology-informed signal processing).</p>
-      </div>
-      <div class="oer-card">
-        <h3>Datasets &amp; code</h3>
-        <p>Open datasets (e.g. mcPHASES on PhysioNet, Kaggle menstrual cycle data) and data-processing code for hormonal alignment, ovulation annotation, and day-level feature construction.</p>
-      </div>
-      <div class="oer-card">
-        <h3>Research &amp; paper</h3>
-        <p>Interim report on a physiology-informed, data-driven MC and ovulation inference framework for sparse sensing, plus embodied menstrual service robot integration; baseline reproduction results and implementation notes.</p>
+      <p class="eyebrow">Open Educational Resource</p>
+      <h1 class="heading-serif page-title">A research guide to menstrual cycle prediction</h1>
+      <p class="lead">
+        This site is designed for new researchers entering menstrual cycle prediction. It explains the
+        field in plain language, separates calendar, wearable, and clinical routes, highlights what is
+        physiologically stable versus variable, and makes the current research bottlenecks explicit.
+      </p>
+      <div class="hero-actions">
+        <a href="survey.html" class="btn-metal">Start with the survey</a>
+        <a href="resources.html" class="btn-metal">See datasets</a>
       </div>
     </section>
 
     <section class="oer-section">
-      <h2>Quick navigation</h2>
-      <p class="text-muted mb-0" style="margin-bottom: 1rem;">Jump to each section:</p>
-      <nav class="oer-segmented" aria-label="Main sections">
-        <a href="survey.html" class="btn-metal">Survey</a>
-        <a href="resources.html" class="btn-metal">Resources</a>
-        <a href="research.html" class="btn-metal">Research</a>
-      </nav>
-      <ul style="margin-top: 1.25rem;">
-        <li><a href="survey.html">Survey</a> — background, classifications, methods, limits, hotspots</li>
-        <li><a href="resources.html">Resources &amp; data</a> — open datasets, data-processing code</li>
-        <li><a href="research.html">My research</a> — overview, paper, code, results</li>
+      <h2>Start here</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>1. Learn the biology before the model</h3>
+          <p>
+            The cycle is not a fixed 28-day template. Ovulation is the key temporal anchor, the follicular
+            phase tends to vary more, and the luteal phase is usually more stable. That matters because many
+            prediction errors are really biology errors disguised as modelling errors.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>2. Separate the three modelling routes</h3>
+          <p>
+            Calendar methods use prior bleeding history; wearable methods use physiological signals such as
+            skin temperature and heart rate; clinical approaches rely on hormone tests, ultrasound, or more
+            controlled observations. They solve related but not identical problems.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>3. Expect data access to be a bottleneck</h3>
+          <p>
+            Public datasets exist, but most large-scale app and device datasets are not openly released. That
+            means evaluation protocols and careful problem definition are as important as model choice.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>4. Read results with caution</h3>
+          <p>
+            Reported performance is often hard to compare because studies use different targets, label rules,
+            cohort filters, and metrics. A paper can look strong simply because it evaluated an easier cohort.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section">
+      <h2>The three routes into the field</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Main inputs</th>
+            <th>Why people use it</th>
+            <th>Main limitation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Calendar / history-based</td>
+            <td>Past bleeding dates, cycle length history, adherence patterns</td>
+            <td>Low burden, scalable, works with app data</td>
+            <td>Breaks down when cycles are irregular or history is sparse</td>
+          </tr>
+          <tr>
+            <td>Wearable physiology</td>
+            <td>Skin temperature, heart rate, HRV, sleep, respiration, activity</td>
+            <td>Captures physiological change rather than date history alone</td>
+            <td>Signals are noisy, device-specific, and often weakly labelled</td>
+          </tr>
+          <tr>
+            <td>Clinical / biomarker-led</td>
+            <td>Urinary LH, progesterone, ultrasound, blood tests</td>
+            <td>Closer to biological ground truth</td>
+            <td>Higher burden, smaller cohorts, less deployable in daily life</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note-inline">
+        The wearable and clinical routes often interact: many wearable studies still use clinical or hormonal
+        measures to define labels, even when those measures are not available at deployment time.
+      </p>
+    </section>
+
+    <section class="oer-section">
+      <h2>What makes this area difficult</h2>
+      <div class="oer-note">
+        <p>
+          Menstrual prediction is not just a forecasting problem. It is a sparse-sensing, weak-labelling,
+          person-specific time-series problem with meaningful physiological constraints.
+        </p>
+      </div>
+      <ul>
+        <li>Real-world cycles show substantial variation in length, phase timing, and consistency rather than clustering around a single ideal cycle.</li>
+        <li>Ovulation does not reliably occur at the cycle midpoint, so midpoint heuristics are structurally weak.</li>
+        <li>Wearable signals differ by body site and device; wrist skin temperature, finger temperature, and basal temperature should not be treated as interchangeable.</li>
+        <li>Irregular populations are usually collapsed into one coarse category, even though short-stable, long, and high-variability patterns create different prediction problems.</li>
+        <li>Evaluation is inconsistent across studies because labels, splits, and metrics vary widely.</li>
       </ul>
     </section>
 
     <section class="oer-section">
-      <h2>How to use this OER</h2>
-      <p>Read the <a href="survey.html">Survey</a> for background, taxonomies, and performance limits; use <a href="resources.html">Resources</a> to find datasets and data-processing code; then explore <a href="research.html">My research</a> for the proposed methodology, paper, code, and results. Cite and license information is on <a href="license.html">License</a>.</p>
+      <h2>Current research gaps</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card accent-card">
+          <h3>Irregular cycles are under-served</h3>
+          <p>
+            Many methods are developed or reported on relatively regular cohorts. That makes them look more
+            reliable than they are for the people most likely to need better prediction support.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>No shared evaluation standard</h3>
+          <p>
+            Different studies define ovulation differently, report different windows and metrics, and split
+            data at different levels. Comparison across papers is therefore often weak.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>Open data remain scarce</h3>
+          <p>
+            Large app and device cohorts are influential but usually proprietary. New researchers are often
+            forced to work with small cohorts, public app exports, or carefully processed subsets.
+          </p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>Deployment still lags behind validation</h3>
+          <p>
+            A model may work retrospectively while failing in a daily prediction setting where only past and
+            present observations are available.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section">
+      <h2>Suggested reading path</h2>
+      <ol class="oer-steps">
+        <li><a href="survey.html">Survey</a> for menstrual basics, method families, wearable signals, and evaluation pitfalls.</li>
+        <li><a href="literature.html">Literature</a> for a verified deep-dive list of papers with DOI and PubMed or PMC checks.</li>
+        <li><a href="resources.html">Resources</a> for public datasets, restricted-data realities, and a practical entry strategy.</li>
+        <li><a href="research.html">Research</a> for my work on irregular-cycle analysis and personalisation.</li>
+        <li><a href="license.html">License &amp; citation</a> for reuse notes and how to cite this OER.</li>
+      </ol>
+    </section>
+
+    <section class="oer-section">
+      <h2>Selected references</h2>
+      <ol class="oer-ref-list">
+        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-symul">Symul L, Wac K, Hillard PJA, Salathé M. Assessment of menstrual health status and evolution through mobile apps for fertility awareness. <em>npj Digital Medicine</em>. 2019;2:64. <a href="https://www.nature.com/articles/s41746-019-0139-4" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-li">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-acog-vital">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Committee Opinion No. 651. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">Guidance</a></li>
+      </ol>
     </section>
 
     <footer class="oer-footer">
-      <p class="mb-0 text-light">OER · Menstrual Prediction Research. <a href="license.html">License &amp; citation</a>.</p>
+      <p class="mb-0 text-light">
+        This OER is an educational guide, not a clinical diagnostic tool. See <a href="license.html">License &amp; citation</a>.
+      </p>
     </footer>
   </main>
 </body>
