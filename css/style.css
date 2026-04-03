@@ -306,6 +306,24 @@ tbody tr:last-child td {
   background: var(--warning-bg);
 }
 
+.research-banner {
+  padding: 1.3rem 1.25rem;
+}
+
+.research-banner-kicker {
+  margin-bottom: 0.45rem;
+  color: #9c6532;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.research-banner h2 {
+  margin-bottom: 0.65rem;
+  color: #6f441e;
+}
+
 .oer-note p:last-child,
 .note-inline:last-child {
   margin-bottom: 0;
@@ -458,5 +476,46 @@ tbody tr:last-child td {
     overflow-x: auto;
     white-space: nowrap;
     border-radius: 18px;
+  }
+}
+
+/* Language Toggle Button */
+.lang-switch {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+.btn-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+  border-bottom: none; /* Override general link style */
+}
+
+.btn-lang:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .lang-switch {
+    position: static;
+    text-align: right;
+    padding: 0.5rem 1rem;
+    background: rgba(23, 32, 42, 0.93);
+    margin-top: -2.5rem;
   }
 }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kaggle 数据集分析 — 月经预测 OER</title>
+  <meta
+    name="description"
+    content="对 Kaggle 月经周期数据集的本地分析，包括清洗、特征工程和基准建模。"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="oer-header">
+    <div class="lang-switch"><a href="kaggle-p1.html" class="btn-lang">English</a></div>
+    <div class="oer-wrap">
+      <div class="oer-logo"><a href="index_zh.html">OER · 月经预测</a></div>
+      <nav>
+        <ul class="oer-nav">
+          <li><a href="index_zh.html">首页</a></li>
+          <li><a href="survey_zh.html">领域综述</a></li>
+          <li><a href="literature_zh.html">文献深挖</a></li>
+          <li><a href="resources_zh.html">资源</a></li>
+          <li><a href="research_zh.html">研究</a></li>
+          <li><a href="about_zh.html">关于</a></li>
+          <li><a href="license_zh.html">许可</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="oer-wrap">
+    <h1 class="heading-serif page-title">Kaggle 数据集实战分析</h1>
+    <p class="page-subtitle">
+      针对 Kaggle 月经周期数据集的本地分析页面。总结了数据集概况、数据清洗、特征工程决策以及运行的基准实验结果。
+    </p>
+
+    <nav class="oer-toc" aria-label="Dataset analysis sections">
+      <a href="#overview">概览</a>
+      <a href="#files">关联文件</a>
+      <a href="#pipeline">处理流水线</a>
+      <a href="#results">实验结果</a>
+      <a href="#limitations">局限性</a>
+    </nav>
+
+    <section class="oer-section" id="overview">
+      <h2>概览</h2>
+      <p>
+        本本地分析专注于为建模准备 Kaggle 月经周期数据集，特别是在分组评估（grouped evaluation）下的周期长度预测任务。工作流包括清洗原始表格、构建药物影响特征、基于领域逻辑移除或插补高缺失值变量，并评估了三个基准模型家族：决策树（Decision Tree）、随机森林（Random Forest）和 LSTM。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>数值 / 内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>原始文件</td><td><code>FedCycleData071012 (2).csv</code></td></tr>
+          <tr><td>清洗后的建模表</td><td>1,660 行 × 12 列</td></tr>
+          <tr><td>主要目标变量</td><td><code>LengthofCycle</code> (周期长度)</td></tr>
+          <tr><td>评估策略</td><td>GroupKFold / 按参与者进行分组划分</td></tr>
+          <tr><td>本地分析代码</td><td><code>open_source/P1.ipynb</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="oer-section" id="files">
+      <h2>关联文件</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>分析代码</h3>
+          <p>完整的本地工作流，包括清洗、特征处理、分组验证和基准模型实现。</p>
+          <p><a href="open_source/P1.ipynb" class="btn-metal">打开分析代码</a></p>
+        </article>
+        <article class="oer-card">
+          <h3>数据集文档</h3>
+          <p>描述原始表、缺失情况、预处理逻辑和核心指标的本地 Markdown 文档。</p>
+          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/Dataset_Documentation.md" class="btn-metal">打开文档</a></p>
+        </article>
+        <article class="oer-card">
+          <h3>原始 CSV</h3>
+          <p>用于本地分析管线输入的原始数据集。</p>
+          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/FedCycleData071012%20(2).csv" class="btn-metal">打开原始 CSV</a></p>
+        </article>
+        <article class="oer-card">
+          <h3>清洗后的 CSV</h3>
+          <p>特征选择和插补后导出的经处理建模表。</p>
+          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/cleaned_menstrual_data.csv" class="btn-metal">打开清洗后的 CSV</a></p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="oer-footer">
+      <p class="mb-0 text-light"><a href="index_zh.html">↑ 首页</a> · <a href="license_zh.html">许可与引用</a></p>
+    </footer>
+  </main>
+</body>
+</html>

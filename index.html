@@ -18,6 +18,7 @@
 </head>
 <body>
   <header class="oer-header">
+    <div class="lang-switch"><a href="index_zh.html" class="btn-lang">中文</a></div>
     <div class="oer-wrap">
       <div class="oer-logo"><a href="index.html">OER · Menstrual Prediction</a></div>
       <nav>
@@ -47,6 +48,62 @@
         <a href="survey.html" class="btn-metal">Start with the survey</a>
         <a href="resources.html" class="btn-metal">See datasets</a>
       </div>
+    </section>
+
+    <section class="oer-section">
+      <h2>Why this research matters</h2>
+      <div class="oer-note">
+        <p>
+          The main opportunity in this field is no longer just squeezing a small average gain out of next-date
+          prediction. A more important goal is to use physiology to separate different cycle types and to build
+          models that are more specific to the people whom one-size-fits-all calendar rules serve poorly.
+        </p>
+      </div>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Average accuracy can hide the real problem</h3>
+          <p>
+            Real-world cycle data show substantial variation in cycle length, follicular timing, and ovulation
+            timing, so a single headline score can hide who a model actually works for <a class="oer-inline-cite" href="#ref-bull">[1]</a>
+            <a class="oer-inline-cite" href="#ref-li">[2]</a>. In wearable studies, performance typically
+            drops once irregular menstruators are evaluated separately, which is exactly why overall average
+            accuracy is an incomplete target <a class="oer-inline-cite" href="#ref-yu">[3]</a>
+            <a class="oer-inline-cite" href="#ref-luo">[4]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Different cycle types create different tasks</h3>
+          <p>
+            Short-stable cycles, long cycles, and highly variable cycles are not the same prediction problem.
+            Li et al. showed that users at different ends of the variability spectrum differ in both cycle
+            characteristics and symptom-tracking patterns, which supports subgroup-aware modelling rather than
+            a single pooled model for everyone <a class="oer-inline-cite" href="#ref-li">[2]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Physiology helps break the one-size-fits-all view</h3>
+          <p>
+            Wearable temperature, heart rate, and HRV matter not only because they may improve prediction, but
+            because they expose biological structure that calendar history alone cannot capture. That makes it
+            possible to ask which physiological patterns differ by regularity, age, BMI, or hormonal status,
+            and to build more targeted models from there <a class="oer-inline-cite" href="#ref-jasinski">[5]</a>
+            <a class="oer-inline-cite" href="#ref-yu">[3]</a>.
+          </p>
+        </article>
+        <article class="oer-card">
+          <h3>Better progress means better stratification</h3>
+          <p>
+            A stronger benchmark is not simply whether average error drops a little. A stronger benchmark is
+            whether the method can characterize under-served groups, explain where it fails, and support
+            personalization for people with different cycle dynamics <a class="oer-inline-cite" href="#ref-li">[2]</a>
+            <a class="oer-inline-cite" href="#ref-luo">[4]</a>.
+          </p>
+        </article>
+      </div>
+      <p class="note-inline">
+        The research frontier is shifting from one average score toward physiology-informed, subgroup-aware,
+        and eventually more personalized menstrual modelling.
+      </p>
     </section>
 
     <section class="oer-section">
@@ -189,10 +246,13 @@
       <h2>Selected references</h2>
       <ol class="oer-ref-list">
         <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener">Article</a></li>
-        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">Article</a></li>
-        <li id="ref-symul">Symul L, Wac K, Hillard PJA, Salathé M. Assessment of menstrual health status and evolution through mobile apps for fertility awareness. <em>npj Digital Medicine</em>. 2019;2:64. <a href="https://www.nature.com/articles/s41746-019-0139-4" target="_blank" rel="noopener">Article</a></li>
         <li id="ref-li">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-yu">Yu JL, Su YF, Ren YY, et al. Tracking of menstrual cycles and prediction of the fertile window via measurements of basal body temperature and heart rate as well as machine-learning algorithms. <em>Reproductive Biology and Endocrinology</em>. 2022;20:118. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9375297/" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-luo">Luo C, Su YF, Ren YY, et al. Prediction of the fertile window and menstruation with a wearable device via machine-learning algorithms. <em>Reproductive BioMedicine Online</em>. 2025;51(1):104795. <a href="https://pubmed.ncbi.nlm.nih.gov/40413850/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-jasinski">Jasinski SR, Presby DM, Grosicki GJ, et al. A novel method for quantifying fluctuations in wearable derived daily cardiovascular parameters across the menstrual cycle. <em>npj Digital Medicine</em>. 2024;7:373. <a href="https://www.nature.com/articles/s41746-024-01394-0" target="_blank" rel="noopener">Article</a></li>
         <li id="ref-acog-vital">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Committee Opinion No. 651. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">Guidance</a></li>
+        <li id="ref-pierson">Pierson E, Althoff T, Thomas D, et al. Daily, weekly, seasonal and menstrual cycles in women’s mood, behaviour and vital signs. <em>Nature Human Behaviour</em>. 2021;5:716-725. <a href="https://www.nature.com/articles/s41562-020-01046-9" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">Article</a></li>
       </ol>
     </section>
 
