@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>月经预测研究开放教育资源 (OER)</title>
+  <title>开始这里｜月经预测研究开放教育资源</title>
   <meta
     name="description"
-    content="面向研究新人的月经预测开放教育资源（OER），涵盖生理基础、穿戴感知、数据集获取、评估陷阱及不规则周期研究。"
+    content="面向 App 开发者、AI/DS 研究者与医学研究者的月经预测 OER。帮助你快速理解任务边界、数据路径、穿戴信号与评估陷阱。"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +23,11 @@
       <div class="oer-logo"><a href="index_zh.html">OER · 月经预测</a></div>
       <nav>
         <ul class="oer-nav">
-          <li><a href="index_zh.html" aria-current="page">首页</a></li>
+          <li><a href="index_zh.html" aria-current="page">开始这里</a></li>
           <li><a href="survey_zh.html">领域综述</a></li>
-          <li><a href="literature_zh.html">文献深挖</a></li>
-          <li><a href="resources_zh.html">资源</a></li>
-          <li><a href="research_zh.html">研究</a></li>
+          <li><a href="literature_zh.html">文献地图</a></li>
+          <li><a href="resources_zh.html">数据与代码</a></li>
+          <li><a href="thesis_zh.html">研究案例</a></li>
           <li><a href="about_zh.html">关于</a></li>
           <li><a href="license_zh.html">许可</a></li>
         </ul>
@@ -36,136 +36,169 @@
   </header>
 
   <main class="oer-wrap">
-    <section class="oer-hero">
-      <p class="eyebrow">开放教育资源 (OER)</p>
-      <h1 class="heading-serif page-title">月经预测研究指南</h1>
-      <p class="lead">
-        本站专为进入月经预测领域的新研究员设计。它用通俗易懂的语言解释了该领域，区分了日历、穿戴设备和临床路径，强调了生理上的稳定性与变异性，并明确了当前的研究瓶颈。
-      </p>
-      <div class="hero-actions">
-        <a href="survey_zh.html" class="btn-metal">从综述开始</a>
-        <a href="resources_zh.html" class="btn-metal">查看数据集</a>
+    <section class="start-hero">
+      <div class="start-hero-grid">
+        <div>
+          <p class="eyebrow">Open Educational Resource</p>
+          <h1 class="heading-serif page-title">先找到你的入口，再进入月经预测研究</h1>
+          <p class="lead">
+            这是一个面向交叉学科读者的月经预测 OER。它不是把所有人直接扔进论文和术语里，而是先帮你判断：你是要做 app、做 AI 研究，还是从医学角度进入这个领域。
+          </p>
+          <div class="hero-actions">
+            <a href="#paths" class="btn-metal">选择你的路径</a>
+            <a href="#ten-minutes" class="btn-subtle">看 10 分钟起步</a>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <span class="hero-panel-title">这站解决什么问题</span>
+          <p>把月经预测从“看起来像一个简单时间序列任务”还原成一个受生理约束、标签不统一、部署条件复杂的交叉研究问题。</p>
+          <p class="small-note">你会在这里同时看到医学基础、数据路径、可穿戴信号、建模框架和评估陷阱。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="oer-section" id="paths">
+      <span class="section-label">选择入口</span>
+      <h2>你现在最像哪一类读者</h2>
+      <div class="persona-grid">
+        <a class="persona-card accent-card" href="resources_zh.html#starter-path">
+          <span class="card-kicker">Persona 01</span>
+          <h3>我是 App 开发者</h3>
+          <p>我想知道应该预测什么、先做哪条路径、哪些功能不能过度承诺，以及公开数据能否支撑 MVP。</p>
+          <p class="card-meta">先看：产品边界、数据入口、风险提示</p>
+        </a>
+        <a class="persona-card accent-card" href="survey_zh.html#basics">
+          <span class="card-kicker">Persona 02</span>
+          <h3>我来自 AI / 数据科学</h3>
+          <p>我会建模，但需要先弄清楚周期生理、标签来源、任务定义，以及为什么这个领域的论文常常不可直接比较。</p>
+          <p class="card-meta">先看：周期基础、任务定义、评估方法</p>
+        </a>
+        <a class="persona-card accent-card" href="survey_zh.html#translation-bridge">
+          <span class="card-kicker">Persona 03</span>
+          <h3>我来自医学 / 临床</h3>
+          <p>我理解周期和临床语境，但需要快速看懂数据处理、模型家族、subject-wise split 和 AI 论文到底在比较什么。</p>
+          <p class="card-meta">先看：AI 任务化说明、方法分类、评估含义</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="oer-section" id="ten-minutes">
+      <span class="section-label">10 分钟起步</span>
+      <h2>每类用户的最短进入路径</h2>
+      <div class="task-grid">
+        <article class="task-card">
+          <h3>给 App 开发者</h3>
+          <ol class="task-list">
+            <li>先看 [领域综述] 里的任务分类与评估陷阱。</li>
+            <li>再看 [数据与代码] 里的现实起步路径与数据集选择。</li>
+            <li>最后看 [当前研究] 里的开放问题，判断产品承诺边界。</li>
+          </ol>
+        </article>
+        <article class="task-card">
+          <h3>给 AI / DS 研究者</h3>
+          <ol class="task-list">
+            <li>先补“周期基础”，建立最小医学约束。</li>
+            <li>再看“医学问题如何变成 AI 任务”。</li>
+            <li>最后进入“评估方法”和“数据与代码”。</li>
+          </ol>
+        </article>
+        <article class="task-card">
+          <h3>给医学 / 临床研究者</h3>
+          <ol class="task-list">
+            <li>先读“AI 任务化说明”和方法分类。</li>
+            <li>再看可穿戴信号和模型家族如何服务不同问题。</li>
+            <li>最后进入“文献地图”和 Kaggle baseline 案例。</li>
+          </ol>
+        </article>
+        <article class="task-card warm-card">
+          <h3>共同基础路径</h3>
+          <ol class="task-list">
+            <li>理解月经预测不是单一任务。</li>
+            <li>理解日历、穿戴、临床三条路径不是一回事。</li>
+            <li>理解平均准确率不足以代表真实有效性。</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="quick-answer">
+      <span class="panel-title">先别急着做什么</span>
+      <div class="quick-grid">
+        <article class="quick-card">
+          <h3>不要默认 28 天模板</h3>
+          <p>真实世界的周期长度、排卵时机和变异程度差异很大，固定模板会直接把生理噪声误当成建模误差。</p>
+        </article>
+        <article class="quick-card">
+          <h3>不要一上来追复杂模型</h3>
+          <p>在这个领域，标签定义、数据切分和部署约束经常比模型架构本身更决定结果是否可信。</p>
+        </article>
+        <article class="quick-card">
+          <h3>不要把穿戴信号当真值</h3>
+          <p>温度、心率、HRV 是有价值的代理信号，但它们受设备、佩戴位置和人群差异影响。</p>
+        </article>
+        <article class="quick-card">
+          <h3>不要只看平均准确率</h3>
+          <p>规则周期与不规则周期、长周期与高变异周期往往不是同一个预测问题。</p>
+        </article>
       </div>
     </section>
 
     <section class="oer-section">
-      <h2>为什么这项研究很重要</h2>
+      <span class="section-label">三条研究路径</span>
+      <h2>日历、穿戴、临床，解决的是相关但不相同的问题</h2>
+      <div class="route-grid">
+        <article class="route-card">
+          <span class="card-kicker">Calendar</span>
+          <h3>日历 / 历史路径</h3>
+          <p>适合 App 场景、扩展性强、用户负担低，但对不规则周期和历史稀疏情况明显脆弱。</p>
+        </article>
+        <article class="route-card">
+          <span class="card-kicker">Wearables</span>
+          <h3>可穿戴生理路径</h3>
+          <p>能捕捉日期历史以外的生理结构，但信号噪声、设备差异和标签弱化问题都很突出。</p>
+        </article>
+        <article class="route-card">
+          <span class="card-kicker">Clinical</span>
+          <h3>临床 / 生物标志物路径</h3>
+          <p>最接近生物学 ground truth，但代价高、样本量小，也不适合直接迁移到日常部署环境。</p>
+        </article>
+      </div>
+      <p class="note-inline">很多研究会把穿戴与临床路径混用：临床信号用于定义标签，但部署时却没有这些标签可用。</p>
+    </section>
+
+    <section class="oer-section">
+      <h2>为什么这项研究值得认真做</h2>
       <div class="oer-note">
-        <p>
-          该领域的主要机会不再仅仅是从下次经期预测中挤出一点点平均增益。更重要的目标是利用生理信号来区分不同的周期类型，并建立更针对那些被“一刀切”日历规则服务不佳的人群的模型。
-        </p>
+        <p>这项研究不只是为了让“下次月经日期预测”多准一点，而是为了理解不同周期动力学、识别服务不足人群，并建立更个体化的支持方式。</p>
       </div>
       <div class="oer-grid two-up">
         <article class="oer-card">
           <h3>平均准确率可能掩盖真实问题</h3>
-          <p>
-            现实世界的周期数据在周期长度、卵泡期时机和排卵时机上表现出实质性的变异，因此单一的总分可能会掩盖模型究竟对谁有效 <a class="oer-inline-cite" href="#ref-bull">[1]</a> <a class="oer-inline-cite" href="#ref-li">[2]</a>。在穿戴设备研究中，一旦将不规则受试者单独评估，性能通常会下降，这正是为什么整体平均准确率是一个不完整的指标 <a class="oer-inline-cite" href="#ref-yu">[3]</a> <a class="oer-inline-cite" href="#ref-luo">[4]</a>。
-          </p>
+          <p>真实世界周期在长度、卵泡期时机和排卵时机上都存在显著变异，因此一个总分常常掩盖模型究竟对谁有效 <a class="oer-inline-cite" href="#ref-bull">[1]</a> <a class="oer-inline-cite" href="#ref-li">[2]</a>。</p>
         </article>
         <article class="oer-card">
           <h3>不同周期类型构成不同任务</h3>
-          <p>
-            短而稳定的周期、长周期和高变异周期并不是同一个预测问题。Li 等人证明，处于变异光谱不同端的用户在周期特征和症状追踪模式上都存在差异，这支持了基于子组的建模，而非对所有人使用单一的合并模型 <a class="oer-inline-cite" href="#ref-li">[2]</a>。
-          </p>
+          <p>短而稳定、长周期、高变异周期并不是同一种预测问题。分层建模往往比把所有人混在一起更合理 <a class="oer-inline-cite" href="#ref-li">[2]</a>。</p>
         </article>
         <article class="oer-card">
-          <h3>生理学有助于打破“一刀切”视角</h3>
-          <p>
-            穿戴体温、心率和 HRV 至关重要，不仅因为它们可能提高预测精度，还因为它们揭示了日历历史无法捕捉的生物学结构。这使得询问哪些生理模式随规律性、年龄、BMI 或激素状态而异成为可能，并以此建立更有针对性的模型 <a class="oer-inline-cite" href="#ref-jasinski">[5]</a> <a class="oer-inline-cite" href="#ref-yu">[3]</a>。
-          </p>
+          <h3>穿戴信号提供新的生理结构</h3>
+          <p>体温、心率和 HRV 的价值不只是提高预测精度，还在于它们能揭示日历历史捕捉不到的生理差异 <a class="oer-inline-cite" href="#ref-jasinski">[5]</a>。</p>
         </article>
         <article class="oer-card">
           <h3>更好的进展意味着更好的分层</h3>
-          <p>
-            一个更强大的基准不仅仅是平均误差是否下降了一点点，而是该方法能否表征服务不足的群体，解释其失效的原因，并支持具有不同周期动力学的人群的个性化需求 <a class="oer-inline-cite" href="#ref-li">[2]</a> <a class="oer-inline-cite" href="#ref-luo">[4]</a>。
-          </p>
-        </article>
-      </div>
-      <p class="note-inline">
-        研究前沿正从追求单一平均分转向生理启发、子组感知、并最终走向更个性化的月经建模。
-      </p>
-    </section>
-
-    <section class="oer-section">
-      <h2>从这里开始</h2>
-      <div class="oer-grid two-up">
-        <article class="oer-card">
-          <h3>1. 先懂生物学，再谈模型</h3>
-          <p>
-            月经周期并非固定的28天模板。排卵是关键的时间锚点，卵泡期往往变异性更大，而黄体期通常更稳定。这很重要，因为许多预测误差实际上是伪装成建模误差的生物学误差。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>2. 区分三条建模路径</h3>
-          <p>
-            日历法使用既往经期历史；穿戴设备法使用皮肤温度和心率等生理信号；临床方法依赖激素测试、超声或受控观察。它们解决的是相关但不完全相同的问题。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>3. 预见数据获取的瓶颈</h3>
-          <p>
-            虽然存在公开数据集，但大多数大规模应用和设备数据集并非公开。这意味着评估协议和精细的问题定义与模型选择同样重要。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>4. 谨慎看待实验结果</h3>
-          <p>
-            报告的性能通常难以比较，因为研究使用不同的目标、标签规则、人群筛选和指标。一篇论文看起来表现强劲，可能仅仅是因为它评估了一个更容易预测的群体。
-          </p>
+          <p>真正更强的方法，不只是平均误差更低，而是更能解释失败发生在谁身上、为什么失败、以及怎样服务不同群体 <a class="oer-inline-cite" href="#ref-luo">[4]</a>。</p>
         </article>
       </div>
     </section>
 
     <section class="oer-section">
-      <h2>进入该领域的三条路径</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>路径</th>
-            <th>主要输入</th>
-            <th>应用原因</th>
-            <th>主要局限</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>日历 / 基于历史</td>
-            <td>过去出血日期、周期长度历史、依从性模式</td>
-            <td>用户负担低、可扩展性强、适用于 App 数据</td>
-            <td>周期不规则或历史数据稀疏时会失效</td>
-          </tr>
-          <tr>
-            <td>可穿戴生理信号</td>
-            <td>皮肤温度、心率、HRV、睡眠、呼吸、活动</td>
-            <td>捕捉生理变化，而非仅依赖日期历史</td>
-            <td>信号存在噪声、设备特异性强，且标签通常较弱</td>
-          </tr>
-          <tr>
-            <td>临床 / 生物标志物主导</td>
-            <td>尿液 LH、孕酮、超声、血液检查</td>
-            <td>更接近生物学 ground truth</td>
-            <td>负担高、样本量小、难以在日常生活中部署</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="note-inline">
-        穿戴路径与临床路径经常互动：许多穿戴研究仍使用临床或激素指标来定义标签，但排卵标签本身并没有统一的 ground truth，因此这些定义需要谨慎阅读。
-      </p>
-    </section>
-
-    <section class="oer-section">
-      <h2>该领域的难点所在</h2>
-      <div class="oer-note">
-        <p>
-          月经预测不只是一个预测问题。它是一个具有明确生物约束的、稀疏感知、弱标签、受试者特有的时间序列问题。
-        </p>
-      </div>
-      <ul>
-        <li>真实世界的周期在长度、相位时机和一致性上表现出巨大的差异，而非聚集在单一的理想周期。</li>
-        <li>排卵并不总是可靠地发生在周期中点，因此“中点启发式”在结构上是软弱的。</li>
-        <li>穿戴信号因佩戴部位和设备而异；腕部温、手指温和基础体温不应被视为可互换。</li>
-        <li>不规则人群通常被粗略归为一类，尽管“短而稳定”、“长周期”和“高变异”模式构成了完全不同的预测问题。</li>
-        <li>评估方法在各研究间极不一致，因为标签、数据分割和指标千差万别。</li>
+      <h2>这个领域为什么容易让人误判</h2>
+      <ul class="risk-list">
+        <li>月经预测不是单一 forecasting 问题，而是带有明确生理约束的个体化时间序列问题。</li>
+        <li>排卵并不稳定发生在中点，因此“周期中点启发式”结构上是软弱的。</li>
+        <li>可穿戴温度和心血管信号因设备和佩戴部位而异，不能随意互换。</li>
+        <li>不规则周期常被粗略归为一类，但“长周期”“高变异”“偏移但稳定”代表不同任务。</li>
+        <li>研究间标签规则、切分方式和指标差异很大，导致论文难以直接横向比较。</li>
       </ul>
     </section>
 
@@ -174,40 +207,39 @@
       <div class="oer-grid two-up">
         <article class="oer-card accent-card">
           <h3>不规则周期服务不足</h3>
-          <p>
-            许多方法是在相对规则的群体上开发或报告的。这使得它们看起来比在最需要预测支持的人群中表现得更可靠。
-          </p>
+          <p>许多方法是在相对规则的人群上构建或报告的，因此它们在真正需要支持的人群中往往没有看上去那么可靠。</p>
         </article>
         <article class="oer-card accent-card">
-          <h3>缺乏统一评估标准</h3>
-          <p>
-            不同研究对排卵的定义不同，报告的时间窗口和指标也不同。因此，论文间的横向比较往往很困难。
-          </p>
+          <h3>缺少统一评估标准</h3>
+          <p>不同研究对排卵定义、评估窗口和指标体系的处理差异很大，跨论文比较因此常常站不住脚。</p>
         </article>
         <article class="oer-card accent-card">
           <h3>公开数据依然稀缺</h3>
-          <p>
-            大规模 App 和设备群体具有影响力，但通常是私有的。新研究员往往被迫使用小规模群体或经过精细筛选的子集。
-          </p>
+          <p>真正影响领域的大规模 App 与设备数据往往是私有的，公开数据更多用于方法验证与基线构建。</p>
         </article>
         <article class="oer-card accent-card">
-          <h3>部署落后于验证</h3>
-          <p>
-            一个模型在回溯性测试中可能表现良好，但在只能获取过去和当前观察值的日常预测（部署环境）中可能会失败。
-          </p>
+          <h3>部署约束常被忽略</h3>
+          <p>一个模型在回顾性分析里表现很好，不等于它在真实产品部署环境中也能工作。</p>
         </article>
       </div>
     </section>
 
-    <section class="oer-section">
-      <h2>建议阅读路径</h2>
-      <ol class="oer-steps">
-        <li><a href="survey_zh.html">领域综述</a> 了解月经基础、方法分类、穿戴信号和评估陷阱。</li>
-        <li><a href="literature_zh.html">文献深挖</a> 查阅经过 DOI 和 PubMed 验证的深度论文清单。</li>
-        <li><a href="resources_zh.html">资源</a> 获取公开数据集信息、数据访问现状及实用的入门策略。</li>
-        <li><a href="research_zh.html">研究</a> 关注当前关于不规则周期分析和个性化的项目重点。</li>
-        <li><a href="license_zh.html">许可与引用</a> 了解重用说明及如何引用本 OER。</li>
-      </ol>
+    <section class="next-step-panel">
+      <span class="panel-title">下一步怎么走</span>
+      <div class="next-step-grid">
+        <a class="next-step-card" href="survey_zh.html">
+          <h3>先补最小共同基础</h3>
+          <p>去领域综述，看周期基础、任务定义、方法分类和评估陷阱。</p>
+        </a>
+        <a class="next-step-card" href="resources_zh.html">
+          <h3>直接寻找数据与代码</h3>
+          <p>去数据与代码页，看公开数据集、starter code 和现实起步路径。</p>
+        </a>
+        <a class="next-step-card" href="literature_zh.html">
+          <h3>按问题读核心论文</h3>
+          <p>去文献地图页，按你的背景进入而不是按年份盲读。</p>
+        </a>
+      </div>
     </section>
 
     <section class="oer-section">
@@ -218,16 +250,11 @@
         <li id="ref-yu">Yu JL, Su YF, Ren YY, et al. Tracking of menstrual cycles and prediction of the fertile window via measurements of basal body temperature and heart rate as well as machine-learning algorithms. <em>Reproductive Biology and Endocrinology</em>. 2022;20:118. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9375297/" target="_blank" rel="noopener">文章链接</a></li>
         <li id="ref-luo">Luo C, Su YF, Ren YY, et al. Prediction of the fertile window and menstruation with a wearable device via machine-learning algorithms. <em>Reproductive BioMedicine Online</em>. 2025;51(1):104795. <a href="https://pubmed.ncbi.nlm.nih.gov/40413850/" target="_blank" rel="noopener">PubMed 链接</a></li>
         <li id="ref-jasinski">Jasinski SR, Presby DM, Grosicki GJ, et al. A novel method for quantifying fluctuations in wearable derived daily cardiovascular parameters across the menstrual cycle. <em>npj Digital Medicine</em>. 2024;7:373. <a href="https://www.nature.com/articles/s41746-024-01394-0" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-acog-vital">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Committee Opinion No. 651. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">指南链接</a></li>
-        <li id="ref-pierson">Pierson E, Althoff T, Thomas D, et al. Daily, weekly, seasonal and menstrual cycles in women’s mood, behaviour and vital signs. <em>Nature Human Behaviour</em>. 2021;5:716-725. <a href="https://www.nature.com/articles/s41562-020-01046-9" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">文章链接</a></li>
       </ol>
     </section>
 
     <footer class="oer-footer">
-      <p class="mb-0 text-light">
-        本 OER 仅作为教育指南，而非临床诊断工具。参见 <a href="license_zh.html">许可与引用</a>。
-      </p>
+      <p class="mb-0 text-light">本 OER 用于教育与研究引导，而非临床诊断工具。参见 <a href="license_zh.html">许可与引用</a>。</p>
     </footer>
   </main>
 </body>

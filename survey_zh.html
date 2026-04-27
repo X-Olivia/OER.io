@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>领域综述 — 月经预测 OER</title>
+  <title>领域综述｜月经预测 OER</title>
   <meta
     name="description"
-    content="月经周期预测背景综述：周期基础、信号术语表、数学任务定义、穿戴分类及评估陷阱。"
+    content="月经预测领域综述：周期基础、AI 任务定义、穿戴信号、方法分类与评估陷阱。"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +23,11 @@
       <div class="oer-logo"><a href="index_zh.html">OER · 月经预测</a></div>
       <nav>
         <ul class="oer-nav">
-          <li><a href="index_zh.html">首页</a></li>
+          <li><a href="index_zh.html">开始这里</a></li>
           <li><a href="survey_zh.html" aria-current="page">领域综述</a></li>
-          <li><a href="literature_zh.html">文献深挖</a></li>
-          <li><a href="resources_zh.html">资源</a></li>
-          <li><a href="research_zh.html">研究</a></li>
+          <li><a href="literature_zh.html">文献地图</a></li>
+          <li><a href="resources_zh.html">数据与代码</a></li>
+          <li><a href="thesis_zh.html">研究案例</a></li>
           <li><a href="about_zh.html">关于</a></li>
           <li><a href="license_zh.html">许可</a></li>
         </ul>
@@ -36,29 +36,56 @@
   </header>
 
   <main class="oer-wrap">
-    <h1 class="heading-serif page-title">领域综述</h1>
-    <p class="page-subtitle">
-      对该领域的结构化介绍：生理学、信号词汇、数学任务设置、穿戴感知类别，以及导致论文难以比较的评估问题。
-    </p>
+    <section class="oer-hero">
+      <p class="eyebrow">Field Guide</p>
+      <h1 class="heading-serif page-title">领域综述</h1>
+      <p class="page-subtitle">这页负责建立最小共同认知：月经预测到底在研究什么、怎样变成 AI 任务、哪些信号可用，以及为什么评估方法会直接改变结论。</p>
+      <div class="hero-actions">
+        <a href="#how-to-read" class="btn-metal">这页怎么读</a>
+        <a href="#evaluation" class="btn-subtle">直接看评估陷阱</a>
+      </div>
+    </section>
+
+    <section class="oer-section" id="how-to-read">
+      <span class="section-label">这页怎么读</span>
+      <h2>不同背景的人，不必按同一种顺序阅读</h2>
+      <div class="guide-grid">
+        <article class="guide-card">
+          <h3>App 开发者</h3>
+          <p>先看“定位”“方法分类”“评估方法”。你需要先知道什么能做成产品，什么暂时只能留在研究里。</p>
+        </article>
+        <article class="guide-card">
+          <h3>AI / DS 研究者</h3>
+          <p>先看“周期基础”“医学问题如何变成 AI 任务”“评估方法”。重点是避免把生理变异误当作模型缺陷。</p>
+        </article>
+        <article class="guide-card">
+          <h3>医学 / 临床研究者</h3>
+          <p>先看“医学问题如何变成 AI 任务”“方法分类”“穿戴信号”。重点是理解标签、特征和模型输出之间的关系。</p>
+        </article>
+        <article class="guide-card warm-card">
+          <h3>可以跳读什么</h3>
+          <p>如果你只是快速建立方向感，术语表可以先略读，先抓住任务定义、方法路线和评估逻辑。</p>
+        </article>
+      </div>
+    </section>
 
     <nav class="oer-toc" aria-label="Survey sections">
       <a href="#orientation">定位</a>
       <a href="#basics">周期基础</a>
-      <a href="#glossary">术语表</a>
+      <a href="#translation-bridge">AI 任务化说明</a>
       <a href="#math-definitions">数学定义</a>
       <a href="#methods">方法分类</a>
       <a href="#signals">穿戴信号</a>
       <a href="#evaluation">评估方法</a>
       <a href="#gaps">研究空白</a>
+      <a href="#open-questions">开放问题</a>
       <a href="#references">参考文献</a>
     </nav>
 
     <section class="oer-section" id="orientation">
       <h2>新研究员定位</h2>
       <div class="oer-note">
-        <p>
-          该领域混合了几个相关的任务：预测下次月经开始、估算排卵时机、分类周期阶段以及估算受孕窗口。这些任务共享生物学基础，但它们并不共享完全相同的标签、指标或部署约束。
-        </p>
+        <p>这个领域混合了几种相关但不相同的任务：预测下次月经起点、估算排卵时机、判定受孕窗口、分类周期阶段。它们共享生理基础，但标签来源、评价方式和部署约束并不一样。</p>
       </div>
       <table>
         <thead>
@@ -72,284 +99,150 @@
         <tbody>
           <tr>
             <td>下次月经起点</td>
-            <td>自我追踪的出血记录</td>
-            <td>下次日期或距离天数</td>
+            <td>自我追踪出血记录</td>
+            <td>下次日期或剩余天数</td>
             <td>受卵泡期变异和记录质量影响大</td>
           </tr>
           <tr>
             <td>排卵日</td>
-            <td>尿液 LH、超声、孕酮或代理规则</td>
+            <td>尿 LH、超声、孕酮或代理规则</td>
             <td>单日估计或误差窗口</td>
-            <td>不同论文间的操作性定义差异显著</td>
+            <td>不同论文使用的操作性定义差异显著</td>
           </tr>
           <tr>
             <td>受孕窗口</td>
-            <td>源自排卵预测或生育知晓规则</td>
-            <td>每日二分类概率或起止窗</td>
-            <td>通常具有临床敏感性且高度依赖定义</td>
+            <td>由排卵估计或生育感知规则推导</td>
+            <td>每日二分类概率或起止窗口</td>
+            <td>高度依赖定义，且常带临床敏感性</td>
           </tr>
           <tr>
             <td>周期相位</td>
-            <td>日历规则、激素分析或潜在状态标签</td>
+            <td>日历规则、激素检测或潜在状态标签</td>
             <td>每日相位类别</td>
-            <td>相位边界往往是操作性的，而非直接的生物学真相</td>
+            <td>相位边界往往是操作性的，不是直接生物学真相</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section class="oer-section" id="basics">
-      <h2>对建模至关重要的周期基础</h2>
-      <p>
-        临床指南和大规模观察数据集都否定了“全球统一固定28天周期”的说法。对于建模来说，重点不仅在于周期是多变的，还在于这种多变性是有结构的：排卵是一个短暂事件，卵泡期往往是时机变异的主要来源，而黄体期通常比排卵前的部分更稳定 <a class="oer-inline-cite" href="#ref-acog">[1]</a>
-        <a class="oer-inline-cite" href="#ref-endotext">[2]</a>
-        <a class="oer-inline-cite" href="#ref-bull">[3]</a>。
-      </p>
+      <h2>对建模最重要的周期基础</h2>
+      <p>临床指南和大规模观察数据都否定了“固定 28 天周期”作为默认模板。更关键的是，变异并不是混乱噪声，而是有结构的：排卵是短事件，卵泡期通常是主要变异来源，黄体期通常更稳定 <a class="oer-inline-cite" href="#ref-acog">[1]</a> <a class="oer-inline-cite" href="#ref-bull">[2]</a>。</p>
       <table>
         <thead>
           <tr>
             <th>相位</th>
             <th>发生了什么</th>
             <th>相对稳定性</th>
-            <th>建模者为何关注</th>
+            <th>为什么建模者要关心</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>月经期</td>
-            <td>出血标志着新周期的第1天</td>
-            <td>可观测，但自我追踪可能存在噪声</td>
-            <td>通常是最大规模可获取的事件</td>
+            <td>出血通常标志新周期第 1 天</td>
+            <td>可观测，但自我记录有噪声</td>
+            <td>最容易规模化收集的事件</td>
           </tr>
           <tr>
             <td>卵泡期</td>
-            <td>排卵前的卵泡招募与激素准备</td>
-            <td>通常是最具变异性的部分</td>
-            <td>起点预测误差的大部分源于此</td>
+            <td>排卵前的卵泡发育与激素准备</td>
+            <td>通常最具变异性</td>
+            <td>大量起点预测误差来自这里</td>
           </tr>
           <tr>
             <td>排卵</td>
-            <td>卵子释放，通常以 LH 测试为锚点</td>
-            <td>事件短暂且难以直接观测</td>
-            <td>倒计时类模型的有用锚点</td>
+            <td>卵子释放，常以 LH 事件作为参考锚点</td>
+            <td>短暂且难以直接观测</td>
+            <td>是倒计时式模型最关键的时间锚</td>
           </tr>
           <tr>
             <td>黄体期</td>
-            <td>排卵后孕酮主导的相位</td>
+            <td>排卵后由孕酮主导</td>
             <td>相对更稳定</td>
-            <td>解释了为何在排卵后预测月经更容易</td>
+            <td>解释了为什么排卵后预测月经更容易</td>
           </tr>
         </tbody>
       </table>
       <ul>
-        <li>正常的变异很常见；完美的规律性不应作为默认假设 <a class="oer-inline-cite" href="#ref-symul2019">[4]</a> <a class="oer-inline-cite" href="#ref-li2020">[5]</a>。</li>
-        <li>排卵并不总是可靠地发生在周期中点，因此中点计数法在结构上是软弱的 <a class="oer-inline-cite" href="#ref-wilcox2000">[6]</a>。</li>
-        <li>不规则性是异质的：长周期、短而稳定的周期以及高变异周期可能需要不同的建模假设。</li>
+        <li>正常变异很常见，完美规律性不该被设为默认假设。</li>
+        <li>排卵并不可靠地发生在周期中点，因此中点启发式结构上是脆弱的。</li>
+        <li>不规则性是异质的：长周期、短而稳定、高变异，往往应被视作不同任务。</li>
       </ul>
+      <div class="bridge-grid">
+        <article class="bridge-card">
+          <h3>对 App 设计意味着什么</h3>
+          <p>产品不能把用户界面建立在固定周期模板上，否则风险提示、可解释性和用户预期都会失真。</p>
+        </article>
+        <article class="bridge-card">
+          <h3>对 AI / DS 研究者意味着什么</h3>
+          <p>很多误差并不来自算法弱，而来自卵泡期生理变异。基线设计必须体现这一点。</p>
+        </article>
+        <article class="bridge-card">
+          <h3>对医学 / 临床研究者意味着什么</h3>
+          <p>当 AI 研究者谈“error”时，其中一部分其实是在处理本来就存在的生理变异，而不是在假定一个病理问题。</p>
+        </article>
+      </div>
     </section>
 
-    <section class="oer-section" id="glossary">
-      <h2>信号与月经预测术语表</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>术语</th>
-            <th>类别</th>
-            <th>含义及重要性</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>BBT (基础体温)</td>
-            <td>体温</td>
-            <td>休息时达到的最低体温，传统上在醒后立即测量。它是双相周期模式的经典参考。</td>
-          </tr>
-          <tr>
-            <td>核心体温</td>
-            <td>体温</td>
-            <td>更接近真实体温调节的内部温度。在日常生活中比基于皮肤的代理指标更难连续测量。</td>
-          </tr>
-          <tr>
-            <td>WST (腕部皮肤温度)</td>
-            <td>穿戴体温</td>
-            <td>在手腕处捕获的夜间或连续温度。虽易于大规模应用，但受环境和佩戴位置影响 <a class="oer-inline-cite" href="#ref-zhu2021">[7]</a>。</td>
-          </tr>
-          <tr>
-            <td>手指 / 远端皮肤温度</td>
-            <td>穿戴体温</td>
-            <td>夜间外周温度，常由指环测量。在自由生活数据中可表现出清晰的周期相关偏移 <a class="oer-inline-cite" href="#ref-maijala2019">[8]</a>。</td>
-          </tr>
-          <tr>
-            <td>外周体温</td>
-            <td>穿戴体温</td>
-            <td>一些消费级设备使用的皮肤表面温度代理指标的统称；不可与 BBT 或核心体温混用。</td>
-          </tr>
-          <tr>
-            <td>HR (心率)</td>
-            <td>心血管</td>
-            <td>每分钟跳动次数。由于日间活动会引入噪声，多数研究使用静息、夜间或睡眠心率 <a class="oer-inline-cite" href="#ref-shilaih2017">[9]</a>。</td>
-          </tr>
-          <tr>
-            <td>RHR / 睡眠心率</td>
-            <td>心血管</td>
-            <td>静息或睡眠期间的心率。通常比日间心率更稳定，越来越多地用于相位分类和排卵检测 <a class="oer-inline-cite" href="#ref-masuda2025">[10]</a>。</td>
-          </tr>
-          <tr>
-            <td>IBI (跳间间期)</td>
-            <td>心血管</td>
-            <td>心跳之间的时间间隔。HRV 指标由此派生。</td>
-          </tr>
-          <tr>
-            <td>HRV (心率变异性)</td>
-            <td>自主神经</td>
-            <td>心跳间的变异性，通常以 RMSSD 或频域指标表示。用作跨周期自主神经调节的代理指标。</td>
-          </tr>
-          <tr>
-            <td>RR (呼吸频率)</td>
-            <td>呼吸</td>
-            <td>每分钟呼吸次数。一些穿戴设备会在睡眠中估算此指标，并将其作为辅助的周期信号。</td>
-          </tr>
-          <tr>
-            <td>EDA (皮肤电活动)</td>
-            <td>自主神经</td>
-            <td>与交感神经唤醒相关的皮肤电导。出现在一些多模态被动感知研究中，但其标准程度远低于体温或心率。</td>
-          </tr>
-          <tr>
-            <td>皮肤灌注 / 血流</td>
-            <td>外周生理</td>
-            <td>血管张力的变化会影响皮肤温度和脉搏模式，特别是在身体远端部位。</td>
-          </tr>
-          <tr>
-            <td>睡眠时机与时长</td>
-            <td>行为背景</td>
-            <td>常作为协变量或间接信号，因为睡眠模式的变化可能与周期及信号质量共变。</td>
-          </tr>
-          <tr>
-            <td>活动度 / 步数</td>
-            <td>行为背景</td>
-            <td>有助于为日间生理信号提供背景，并识别高噪声时段。</td>
-          </tr>
-          <tr>
-            <td>LH (促黄体生成素)</td>
-            <td>激素标志物</td>
-            <td>在排卵前不久激增。在以排卵为重点的穿戴研究中常被视为务实的参考事件，但并不等于统一的 ground truth。</td>
-          </tr>
-          <tr>
-            <td>OPK (排卵预测套件)</td>
-            <td>激素测试</td>
-            <td>用于检测 LH 激增的消费级尿液测试条。重要原因：许多穿戴研究仍依赖 OPK 获取标签。</td>
-          </tr>
-          <tr>
-            <td>E2 / 雌二醇</td>
-            <td>激素标志物</td>
-            <td>驱动卵泡发育的关键卵巢激素。对临床解释有用，有时也用于混合预测模型。</td>
-          </tr>
-          <tr>
-            <td>E3G (雌酮-3-葡萄糖苷酸)</td>
-            <td>尿液激素代谢物</td>
-            <td>用于生育监测系统的尿液雌激素代谢物。在生育意识数据集中比在消费级穿戴中更常见。</td>
-          </tr>
-          <tr>
-            <td>孕酮</td>
-            <td>激素标志物</td>
-            <td>排卵后激素，与体温升高和黄体期生理强相关。</td>
-          </tr>
-          <tr>
-            <td>PdG (孕二醇葡萄糖苷酸)</td>
-            <td>尿液激素代谢物</td>
-            <td>孕酮的尿液代谢物，用于回溯性地确认排卵。</td>
-          </tr>
-          <tr>
-            <td>FSH (促卵泡激素)</td>
-            <td>激素标志物</td>
-            <td>对周期生理和某些临床诊断很重要，但在现实世界的预测数据集中较少见。</td>
-          </tr>
-          <tr>
-            <td>无排卵周期</td>
-            <td>周期类型</td>
-            <td>没有排卵发生的周期。这很重要，因为基于排卵锚定的假设在此类周期中可能会完全失效。</td>
-          </tr>
-          <tr>
-            <td>受孕窗口</td>
-            <td>任务概念</td>
-            <td>在此期间进行性行为可能导致受孕；通常是相对于排卵日定义的，而非直接观测到的。</td>
-          </tr>
-          <tr>
-            <td>受试者分割 (Subject-wise split)</td>
-            <td>评估设计</td>
-            <td>训练集和测试集的受试者互不重叠。在声称对新用户具有泛化能力时，这是更安全的评估协议。</td>
-          </tr>
-          <tr>
-            <td>前瞻性 / 因果预测</td>
-            <td>部署约束</td>
-            <td>在第 $t$ 天的预测仅使用截至第 $t$ 天的信息；当前周期的任何未来观测值不得泄露。</td>
-          </tr>
-        </tbody>
-      </table>
+    <section class="oer-section" id="translation-bridge">
+      <span class="section-label">跨学科翻译</span>
+      <h2>医学问题如何变成 AI 任务</h2>
+      <div class="oer-note">
+        <p>医学语境里常说“预测月经”“识别排卵”“评估受孕窗口”；进入计算语境后，这些会被重写成回归、事件检测、序列标注或窗口分类问题。</p>
+      </div>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>医学里的问题</h3>
+          <p>什么时候来月经？什么时候排卵？哪几天最可能受孕？这个周期现在处于哪个阶段？</p>
+        </article>
+        <article class="oer-card">
+          <h3>计算里的问题</h3>
+          <p>预测下一事件的时间、估计某个关键事件日、输出一段时间窗、或者对每日状态进行分类。</p>
+        </article>
+        <article class="oer-card">
+          <h3>标签的现实</h3>
+          <p>月经起点常来自自我报告，排卵常来自尿 LH 或其代理规则，相位有时来自潜在状态模型而不是直接检测。</p>
+        </article>
+        <article class="oer-card">
+          <h3>为什么这很重要</h3>
+          <p>同样一个临床概念，在不同论文里可能被操作化成完全不同的机器学习任务，因此不能只看标题判断是否可比。</p>
+        </article>
+      </div>
     </section>
 
     <section class="oer-section" id="math-definitions">
-      <h2>数学任务定义</h2>
-      <p>
-        下方的公式以 HTML 渲染。其设计初衷是让任务框架在讨论模型架构之前变得明确。
-      </p>
+      <h2>常见数学定义</h2>
       <div class="oer-grid two-up">
         <article class="oer-card">
-          <h3>符号定义</h3>
-          <table class="tight-table">
-            <tbody>
-              <tr><td><strong>x<sub>1:t</sub></strong></td><td>截至第 $t$ 天的观测信号</td></tr>
-              <tr><td><strong>h</strong></td><td>来自既往周期的用户历史</td></tr>
-              <tr><td><strong>m</strong></td><td>下次月经开始日期</td></tr>
-              <tr><td><strong>o</strong></td><td>排卵日</td></tr>
-              <tr><td><strong>y<sub>t</sub></strong></td><td>第 $t$ 天的相位标签</td></tr>
-            </tbody>
-          </table>
+          <h3>回归 / 时间到事件</h3>
+          <p>例如预测“距离下次出血还有多少天”或“下一个事件发生的日期”。优点是直观，缺点是对标签噪声和个体差异敏感。</p>
         </article>
         <article class="oer-card">
-          <h3>部署规则</h3>
-          <div class="oer-equation">
-            <span class="oer-equation-main">第 $t$ 天的预测仅能使用 x<sub>1:t</sub> 和 h</span>
-          </div>
-          <p class="mb-0">
-            这是实际的日常预测设置。回溯性全周期估算是一个不同且更简单的任务。
-          </p>
+          <h3>事件检测</h3>
+          <p>例如估计某天是否接近排卵。常与窗口型指标一起使用，但非常依赖标签定义。</p>
         </article>
         <article class="oer-card">
-          <h3>1. 下次月经起点预测</h3>
-          <div class="oer-equation">
-            <span class="oer-equation-main">m̂<sub>t</sub> = f(x<sub>1:t</sub>, h)</span>
-          </div>
-          <p>
-            模型输出下次开始日期或剩余天数。以天为单位的 MAE 很常见，但也应报告固定窗口内的覆盖率。
-          </p>
+          <h3>序列标注 / 相位分类</h3>
+          <p>对每天给出阶段标签，更适合表达周期动态，但相位边界常常是规则性或代理性的。</p>
         </article>
         <article class="oer-card">
-          <h3>2. 每日相位分类</h3>
-          <div class="oer-equation">
-            <span class="oer-equation-main">ŷ<sub>t</sub> ∈ {月经期, 卵泡期, 排卵期, 黄体期}</span>
-          </div>
-          <p>
-            这是一个日级的状态估算问题。不同论文使用的相位粒度不同，因此标签不一定具有直接可比性。
-          </p>
+          <h3>窗口预测</h3>
+          <p>把问题定义成一段高风险时间窗，适合受孕窗口任务，但需要清楚说明窗口是怎样推导出来的。</p>
         </article>
-        <article class="oer-card">
-          <h3>3. 排卵日估算</h3>
-          <div class="oer-equation">
-            <span class="oer-equation-main">ô = arg max<sub>τ ≤ t</sub> P(O<sub>τ</sub> = 1 | x<sub>1:t</sub>, h)</span>
-          </div>
-          <p>
-            在前瞻性设置中，估算只能依赖于目前观察到的数据。在回溯性设置中，全周期数据可能可用，通常能得到更好的结果。
-          </p>
+      </div>
+      <div class="bridge-grid">
+        <article class="bridge-card">
+          <h3>对 App 设计意味着什么</h3>
+          <p>你显示给用户的是“日期”“概率”还是“窗口”，不是纯展示层问题，而是任务定义本身的一部分。</p>
         </article>
-        <article class="oer-card">
-          <h3>4. 受孕窗口检测</h3>
-          <div class="oer-equation">
-            <span class="oer-equation-main">P(FW<sub>t</sub> = 1 | x<sub>1:t</sub>, h)</span>
-          </div>
-          <p>
-            这通常源自排卵概率或生育知晓规则，因此它继承了上游排卵定义中的标签不确定性。
-          </p>
+        <article class="bridge-card">
+          <h3>对 AI / DS 研究者意味着什么</h3>
+          <p>任务定义必须与标签来源和部署时可用信息匹配，否则会把未来信息偷偷带进模型。</p>
+        </article>
+        <article class="bridge-card">
+          <h3>对医学 / 临床研究者意味着什么</h3>
+          <p>模型输出并不天然代表临床真值；它往往只是某种操作化标签的最佳估计。</p>
         </article>
       </div>
     </section>
@@ -359,225 +252,227 @@
       <table>
         <thead>
           <tr>
-            <th>家族</th>
-            <th>输入</th>
-            <th>典型方法</th>
-            <th>优势</th>
-            <th>弱点</th>
+            <th>方法族</th>
+            <th>典型输入</th>
+            <th>适合什么</th>
+            <th>主要局限</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>日历 / 基于历史</td>
-            <td>过去出血日期和周期统计</td>
-            <td>前向计数、移动平均、贝叶斯先验、隐藏状态模型</td>
-            <td>可扩展、廉价、部署广泛</td>
-            <td>当历史较短或周期不稳定时表现较弱</td>
+            <td>规则 / 日历基线</td>
+            <td>过去出血日期、平均周期长度</td>
+            <td>建立透明基线、低成本产品原型</td>
+            <td>对不规则周期和冷启动脆弱</td>
           </tr>
           <tr>
-            <td>穿戴生理信号</td>
-            <td>连续或夜间传感器流</td>
-            <td>特征工程、随机森林、提升树、序列模型、信号处理规则</td>
-            <td>可以利用生理变化而非仅依赖日期</td>
-            <td>数据缺失率高、设备异质性、标注样本量小</td>
+            <td>表格模型</td>
+            <td>周期统计量、症状、依从性特征</td>
+            <td>小中规模数据、可解释 baseline</td>
+            <td>时间结构表达有限</td>
           </tr>
           <tr>
-            <td>临床 / 生物标志物驱动</td>
-            <td>LH 测试、超声、抽血、孕酮、雌激素标志物</td>
-            <td>基于规则的锚定、生育监测、诊断评估</td>
-            <td>更强的生物学参考</td>
-            <td>负担重，不适合低摩擦的日常部署</td>
+            <td>RNN / LSTM / GRU</td>
+            <td>逐日或逐周期序列</td>
+            <td>建模时序依赖与多步预测</td>
+            <td>数据需求更高，容易掩盖标签问题</td>
+          </tr>
+          <tr>
+            <td>潜在状态 / 生成模型</td>
+            <td>带缺失和噪声的长期追踪数据</td>
+            <td>处理缺失、依从性与隐含阶段</td>
+            <td>实现和解释门槛较高</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section class="oer-section" id="signals">
-      <h2>穿戴信号分类</h2>
-      <p>
-        穿戴周期预测研究并不都测量相同的“体温”或相同的“心率”。佩戴部位、时间、聚合策略以及伴随的激素标签都会改变问题的定义 <a class="oer-inline-cite" href="#ref-shilaih2018">[11]</a>
-        <a class="oer-inline-cite" href="#ref-goodale2019">[12]</a>
-        <a class="oer-inline-cite" href="#ref-wang2025">[13]</a>。
-      </p>
+      <h2>穿戴信号为什么重要，又为什么不能被神化</h2>
+      <p>体温、心率、HRV、睡眠和呼吸是当前最常见的被动信号。它们的重要性在于揭示周期相关的生理结构，但它们并不是直接等于排卵或受孕窗口的“真值”。</p>
       <table>
         <thead>
           <tr>
-            <th>信号家族</th>
-            <th>文献示例</th>
-            <th>典型用途</th>
-            <th>主要注意事项</th>
+            <th>信号</th>
+            <th>它提供什么</th>
+            <th>常见风险</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>体温</td>
-            <td>BBT, 腕部皮温, 手指皮温, 远端或外周温度, 夜间温度曲线</td>
-            <td>排卵估算, 黄体偏移检测, 下次月经预测</td>
-            <td>信号含义随部位及数据是原始、夜间平均还是相位聚合而变化</td>
+            <td>基础体温 / 皮肤温度</td>
+            <td>跨相位的温度变化模式</td>
+            <td>不同设备和测量部位不可直接互换</td>
           </tr>
           <tr>
-            <td>心血管</td>
-            <td>睡眠心率, 静息心率, 跳间间期, HRV, 脉搏率</td>
-            <td>相位分类, 排卵日估算, 多模态融合</td>
-            <td>对压力、疾病、运动负荷和睡眠中断高度敏感</td>
+            <td>静息心率 / 睡眠心率</td>
+            <td>反映自主神经与代谢变化</td>
+            <td>受活动、睡眠和设备算法影响</td>
           </tr>
           <tr>
-            <td>呼吸与自主神经</td>
-            <td>呼吸频率, 皮肤电活动, 皮肤电导, 灌注相关指标</td>
-            <td>多模态模型中的辅助被动感知特征</td>
-            <td>各设备间标准不一，且在公开数据集中较少见</td>
+            <td>HRV</td>
+            <td>补充心血管调节信息</td>
+            <td>信号质量和预处理差异很大</td>
           </tr>
           <tr>
-            <td>睡眠与活动背景</td>
-            <td>睡眠时长, 睡眠时机, 醒来次数, 步数, 活动计数</td>
-            <td>背景调整, 特征融合, 质量控制</td>
-            <td>往往反映了行为以及生理状况</td>
-          </tr>
-          <tr>
-            <td>症状与自我报告</td>
-            <td>痛经, 分泌物, 情绪, 出血量, 药物使用</td>
-            <td>混合型穿戴+日记模型</td>
-            <td>记录依从性和主观性会影响标签可靠性</td>
-          </tr>
-          <tr>
-            <td>参考生物标志物</td>
-            <td>尿液 LH, E3G, PdG, 血清雌二醇, 孕酮, FSH, 超声</td>
-            <td>ground truth 锚定, 子组定义, 混合临床模型</td>
-            <td>可用于标签构建和子组定义，但排卵标签本身仍需谨慎处理，因为不同研究之间并不存在统一的 ground truth</td>
+            <td>睡眠 / 呼吸 / 活动</td>
+            <td>提供行为背景与噪声控制</td>
+            <td>常被误当成主要生理因果信号</td>
           </tr>
         </tbody>
       </table>
-
-      <div class="oer-grid two-up">
-        <article class="oer-card">
-          <h3>体温信号</h3>
-          <p>
-            由于与孕酮相关的热学变化提供了合理的排卵后信号，体温仍是目前最成熟的生理路径。但 BBT、腕部温度、手指温度和外周皮温不可互换 <a class="oer-inline-cite" href="#ref-maijala2019">[8]</a>
-            <a class="oer-inline-cite" href="#ref-zhu2021">[7]</a>
-            <a class="oer-inline-cite" href="#ref-niggli2023">[14]</a>。
-          </p>
+      <div class="bridge-grid">
+        <article class="bridge-card">
+          <h3>对 App 设计意味着什么</h3>
+          <p>如果产品使用穿戴信号，就必须同时表达不确定性，而不是把它包装成“看见了排卵”。</p>
         </article>
-        <article class="oer-card">
-          <h3>心血管信号</h3>
-          <p>
-            睡眠心率和 HRV 越来越多地作为体温的有益补充出现，因为它们能追踪跨周期的自主神经和循环系统偏移。当体温信号充满噪声时，它们可能会有所帮助，但它们对压力、睡眠不规律和疾病的反应也很强烈 <a class="oer-inline-cite" href="#ref-shilaih2017">[9]</a>
-            <a class="oer-inline-cite" href="#ref-masuda2025">[10]</a>。
-          </p>
+        <article class="bridge-card">
+          <h3>对 AI / DS 研究者意味着什么</h3>
+          <p>信号选择和预处理与模型一样重要，尤其要注意设备差异和缺失模式。</p>
         </article>
-        <article class="oer-card">
-          <h3>多模态被动感知</h3>
-          <p>
-            近期的研究趋向于结合体温、心脏信号、睡眠、活动和症状，而非假设单一生物标志物能解决所有问题。这通常更现实，但也使得特征来源和缺失值更难解释 <a class="oer-inline-cite" href="#ref-goodale2019">[12]</a>
-            <a class="oer-inline-cite" href="#ref-yu2022">[15]</a>。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>作为标签而非仅作为信号的激素</h3>
-          <p>
-            即使部署模型是“仅限穿戴设备”的，LH、E3G、PdG、雌二醇、孕酮和 FSH 依然重要。它们通常定义了标签或验证了子组生理，因此理解它们是正确阅读穿戴文献的必要条件。
-          </p>
+        <article class="bridge-card">
+          <h3>对医学 / 临床研究者意味着什么</h3>
+          <p>这里的 wearable signal 更接近 proxy marker，而不是临床诊断中的标准化生物标志物。</p>
         </article>
       </div>
     </section>
 
     <section class="oer-section" id="evaluation">
-      <h2>为什么评估很混乱</h2>
+      <h2>评估方法为什么会改变结论</h2>
+      <div class="warning-note">
+        <p>这个领域里，一篇论文“看起来很强”常常不只是因为模型强，也可能因为标签更宽松、切分更轻松、人群更规律，或者使用了部署时不可用的信息。</p>
+      </div>
       <table>
         <thead>
           <tr>
-            <th>失配来源</th>
-            <th>示例</th>
-            <th>重要意义</th>
+            <th>评估问题</th>
+            <th>如果做错了会怎样</th>
+            <th>更稳妥的做法</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>终点失配</td>
-            <td>排卵日 vs 受孕窗 vs 下次月经</td>
-            <td>报告的数值不可直接比较</td>
+            <td>随机切分 vs 按受试者切分</td>
+            <td>同一人的模式泄漏到训练和测试中</td>
+            <td>声称泛化时优先使用 subject-wise split</td>
           </tr>
           <tr>
-            <td>标签失配</td>
-            <td>LH 开始、LH 峰值、峰值+1天、孕酮确认或日历代理</td>
-            <td>两项研究可能针对同一事件的不同操作定义</td>
+            <td>未来信息泄露</td>
+            <td>离线结果虚高，部署时失效</td>
+            <td>明确声明预测时刻可用信息</td>
           </tr>
           <tr>
-            <td>分割失配</td>
-            <td>随机日期、随机周期、留出最后一个周期或受试者分割</td>
-            <td>泄露风险随分割规则剧烈变化</td>
+            <td>只报告平均分</td>
+            <td>掩盖不规则人群中的失败</td>
+            <td>报告 subgroup 表现与失败模式</td>
           </tr>
           <tr>
-            <td>群体失配</td>
-            <td>仅限规律受试者、具备生育意识的用户或混合的真实人群</td>
-            <td>更简单的群体会使方法看起来比实际更强</td>
-          </tr>
-          <tr>
-            <td>指标失配</td>
-            <td>MAE, ±2天内, AUC, 敏感性, PPV</td>
-            <td>不同指标奖励不同的模型行为</td>
+            <td>标签定义不透明</td>
+            <td>论文之间根本不可比</td>
+            <td>明确写清 LH onset、LH peak、peak+1 等规则</td>
           </tr>
         </tbody>
       </table>
-      <ul>
-        <li>当声称能推广到新受试者时，受试者分割（Subject-wise）通常是更安全的选择。</li>
-        <li>基于窗口的准确率应与连续误差测量配对。</li>
-        <li>论文应明确说明预测是每日的前瞻性预测还是全周期的回溯性估算。</li>
-      </ul>
+      <div class="bridge-grid">
+        <article class="bridge-card">
+          <h3>对 App 设计意味着什么</h3>
+          <p>离线评估好看，不代表真实用户体验可靠。部署约束必须在实验阶段就进入设计。</p>
+        </article>
+        <article class="bridge-card">
+          <h3>对 AI / DS 研究者意味着什么</h3>
+          <p>如果 split、label、metric 没说清楚，性能数字本身几乎没有比较价值。</p>
+        </article>
+        <article class="bridge-card">
+          <h3>对医学 / 临床研究者意味着什么</h3>
+          <p>判断一篇 AI 论文是否可信，往往先看 cohort、标签和切分，而不是先看模型名。</p>
+        </article>
+      </div>
     </section>
 
     <section class="oer-section" id="gaps">
-      <h2>当前重要的研究空白</h2>
+      <h2>当前研究空白</h2>
       <div class="oer-grid two-up">
         <article class="oer-card accent-card">
-          <h3>不规则人群仍分析不足</h3>
-          <p>
-            许多研究仍将“规律”和“不规则”用户进行粗略对比。对于解释和产品设计来说，这都过于宽泛。
-          </p>
+          <h3>不规则性仍被过度粗化</h3>
+          <p>很多研究仍把不规则周期当成一个总类，而没有拆分不同类型的不规则性。</p>
         </article>
         <article class="oer-card accent-card">
-          <h3>信号分类描述不全</h3>
-          <p>
-            太多论文只说“体温”或“心率”，而不清楚说明佩戴部位、聚合方式，或者数值是夜间的、静息的还是连续的。
-          </p>
+          <h3>可穿戴增益缺乏细分解释</h3>
+          <p>我们知道可穿戴信号有时有帮助，但还不清楚“对谁、何时、在哪种任务里”最有帮助。</p>
         </article>
         <article class="oer-card accent-card">
-          <h3>公开数据规模远小于商业数据集</h3>
-          <p>
-            这使得复现变得困难，并导致子组分析在统计效力上代价高昂。
-          </p>
+          <h3>标签标准仍不统一</h3>
+          <p>尤其在排卵相关任务上，操作性定义差异持续阻碍比较和复现。</p>
         </article>
         <article class="oer-card accent-card">
-          <h3>不确定性报告不足</h3>
-          <p>
-            真实用户需要经过校准的置信度或拒绝预测的行为，而不仅仅是一个单一的日期预测。
-          </p>
+          <h3>部署现实常落后于验证</h3>
+          <p>很多实验仍没有在真实预测约束下定义问题。</p>
         </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="open-questions">
+      <span class="section-label">下一阶段问题</span>
+      <h2>值得继续推进的开放问题</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Q1. 不规则性应该如何分型？</h3>
+          <p>长周期、高变异、偏移但稳定等模式不应被折叠成同一个建模目标。</p>
+        </article>
+        <article class="oer-card">
+          <h3>Q2. 穿戴信号何时真正有增益？</h3>
+          <p>重点不只是平均性能，而是对谁有效、在哪种任务里有效、在什么约束下有效。</p>
+        </article>
+        <article class="oer-card">
+          <h3>Q3. 标签规则能否更可比？</h3>
+          <p>排卵与受孕窗口的标签定义仍不统一，直接影响复现性与跨研究比较。</p>
+        </article>
+        <article class="oer-card">
+          <h3>Q4. 实验是否贴近部署现实？</h3>
+          <p>需要明确限制为预测时刻可用信息，避免把未来观测混入当前预测。</p>
+        </article>
+        <article class="oer-card">
+          <h3>Q5. 个性化应落在哪一层？</h3>
+          <p>个性化需要明确触发条件、表示方式与目标人群，而不只是增加模型复杂度。</p>
+        </article>
+        <article class="oer-card warm-card">
+          <h3>实用判断标准</h3>
+          <p>同时报告亚群结果、标签定义和部署约束，才能让结论在跨学科语境下可解释。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="next-step-panel">
+      <span class="panel-title">读完这页后</span>
+      <div class="next-step-grid">
+        <a class="next-step-card" href="literature_zh.html">
+          <h3>去文献地图</h3>
+          <p>按你的背景读最小必读论文，而不是直接被完整书单淹没。</p>
+        </a>
+        <a class="next-step-card" href="resources_zh.html">
+          <h3>去数据与代码</h3>
+          <p>把理论转成行动：看公开数据、starter code 和 baseline 路径。</p>
+        </a>
+        <a class="next-step-card" href="#open-questions">
+          <h3>回看开放问题</h3>
+          <p>基于上面的开放问题选择下一步研究方向。</p>
+        </a>
       </div>
     </section>
 
     <section class="oer-section" id="references">
       <h2>参考文献</h2>
       <ol class="oer-ref-list">
-        <li id="ref-acog">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Committee Opinion No. 651. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">出版商链接</a></li>
-        <li id="ref-endotext">Rosenfield RL, Ehrmann DA. The Normal Menstrual Cycle and the Control of Ovulation. In: <em>Endotext</em>. Updated 2023. <a href="https://www.ncbi.nlm.nih.gov/books/NBK279054/" target="_blank" rel="noopener">NCBI 图书馆</a></li>
-        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://doi.org/10.1038/s41746-019-0152-7" target="_blank" rel="noopener">DOI</a></li>
-        <li id="ref-symul2019">Symul L, Wac K, Hillard PJA, Salathé M. Assessment of menstrual health status and evolution through mobile apps for fertility awareness. <em>npj Digital Medicine</em>. 2019;2:64. <a href="https://doi.org/10.1038/s41746-019-0139-4" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/31341953/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-li2020">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://doi.org/10.1038/s41746-020-0269-8" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-wilcox2000">Wilcox AJ, Dunson D, Baird DD. The timing of the fertile window in the menstrual cycle: day specific estimates from a prospective study. <em>BMJ</em>. 2000;321(7271):1259-1262. <a href="https://doi.org/10.1136/bmj.321.7271.1259" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/11082086/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-zhu2021">Zhu TY, Rothenbühler M, Hamvas G, et al. The Accuracy of Wrist Skin Temperature in Detecting Ovulation Compared to Basal Body Temperature. <em>Journal of Medical Internet Research</em>. 2021;23(6):e20710. <a href="https://doi.org/10.2196/20710" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/34100763/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-maijala2019">Maijala A, Kinnunen H, Koskimäki H, et al. Nocturnal finger skin temperature in menstrual cycle tracking: ambulatory pilot study using a wearable Oura ring. <em>BMC Women's Health</em>. 2019;19:150. <a href="https://doi.org/10.1186/s12905-019-0844-9" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/31783840/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-shilaih2017">Shilaih M, Goodale BM, Falco L, Kübler F, De Clerck V, Leeners B. Pulse Rate Measurement During Sleep Using Wearable Sensors, and Its Correlation With the Menstrual Cycle Phases. <em>Scientific Reports</em>. 2017;7:1294. <a href="https://doi.org/10.1038/s41598-017-01433-9" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/28465583/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-masuda2025">Masuda H, Okada S, Shiozawa N, et al. Machine learning model for menstrual cycle phase classification and ovulation day detection based on sleeping heart rate under free-living conditions. <em>Computer Methods and Programs in Biomedicine</em>. 2025;109705. <a href="https://doi.org/10.1016/j.compbiomed.2025.109705" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/39889448/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-shilaih2018">Shilaih M, Degroote L, Falco L, Kübler F, Leeners B. Modern fertility awareness methods: wrist wearables capture the changes in temperature associated with the menstrual cycle. <em>Bioscience Reports</em>. 2018;38(6):BSR20171279. <a href="https://doi.org/10.1042/BSR20171279" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/29175999/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-goodale2019">Goodale BM, Shilaih M, Falco L, et al. Wearable Sensors Reveal Menses-Driven Changes in Physiology and Enable Prediction of the Fertile Window. <em>Journal of Medical Internet Research</em>. 2019;21(4):e13404. <a href="https://doi.org/10.2196/13404" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/30998226/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-wang2025">Wang Y, Park J, Zhang CY, et al. Performance of algorithms using wrist temperature for retrospective ovulation day estimate and next menses start day prediction. <em>Human Reproduction</em>. 2025;40:469-478. <a href="https://doi.org/10.1093/humrep/deaf005" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/39881571/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-niggli2023">Niggli A, Rothenbühler M, Sachs M, Leeners B. Can Wrist-Worn Medical Devices Correctly Identify Ovulation? <em>Sensors</em>. 2023;23(24):9730. <a href="https://doi.org/10.3390/s23249730" target="_blank" rel="noopener">DOI</a> <a href="https://pubmed.ncbi.nlm.nih.gov/38139575/" target="_blank" rel="noopener">PubMed</a></li>
-        <li id="ref-yu2022">Yu JL, Su YF, Zhang C, et al. Tracking of menstrual cycles and prediction of the fertile window via measurements of basal body temperature and heart rate as well as machine-learning algorithms. <em>Reproductive Biology and Endocrinology</em>. 2022;20:118. <a href="https://doi.org/10.1186/s12958-022-00993-4" target="_blank" rel="noopener">DOI</a></li>
+        <li id="ref-acog">American College of Obstetricians and Gynecologists. Menstruation in Girls and Adolescents: Using the Menstrual Cycle as a Vital Sign. Reaffirmed 2025. <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign" target="_blank" rel="noopener">Guideline</a></li>
+        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener">Article</a></li>
+        <li id="ref-li">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-su">Su HW, Yi YC, Wei TY, Chang TC, Cheng CM. Detection of ovulation, a review of currently available methods. <em>Bioengineering &amp; Translational Medicine</em>. 2017. <a href="https://pubmed.ncbi.nlm.nih.gov/29313033/" target="_blank" rel="noopener">PubMed</a></li>
+        <li id="ref-maijala">Maijala A, Kinnunen H, Koskimäki H, et al. Nocturnal finger skin temperature in menstrual cycle tracking. <em>BMC Women's Health</em>. 2019. <a href="https://pubmed.ncbi.nlm.nih.gov/31783840/" target="_blank" rel="noopener">PubMed</a></li>
       </ol>
     </section>
 
     <footer class="oer-footer">
-      <p class="mb-0 text-light"><a href="index_zh.html">↑ 首页</a> · <a href="license_zh.html">许可与引用</a></p>
+      <p class="mb-0 text-light"><a href="index_zh.html">↑ 返回开始这里</a> · <a href="license_zh.html">许可与引用</a></p>
     </footer>
   </main>
 </body>

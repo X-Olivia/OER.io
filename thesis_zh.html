@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>研究案例｜月经预测 OER</title>
+  <meta name="description" content="基于 workshop 论文的详细研究案例：不规则分型视角下的月经事件预测、方法对比、关键结果与局限。"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="oer-header">
+    <div class="lang-switch"><a href="thesis.html" class="btn-lang">English</a></div>
+    <div class="oer-wrap">
+      <div class="oer-logo"><a href="index_zh.html">OER · 月经预测</a></div>
+      <nav>
+        <ul class="oer-nav">
+          <li><a href="index_zh.html">开始这里</a></li>
+          <li><a href="survey_zh.html">领域综述</a></li>
+          <li><a href="literature_zh.html">文献地图</a></li>
+          <li><a href="resources_zh.html">数据与代码</a></li>
+          <li><a href="thesis_zh.html" aria-current="page">研究案例</a></li>
+          <li><a href="about_zh.html">关于</a></li>
+          <li><a href="license_zh.html">许可</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="oer-wrap">
+    <section class="oer-hero">
+      <p class="eyebrow">Research Case Study</p>
+      <h1 class="heading-serif page-title">案例：穿戴信号与不规则周期</h1>
+      <p class="page-subtitle">本页基于 workshop 论文 <em>Menstrual Cycle Prediction with Wearable and Personal Historical Information: Heterogeneous Effects Across Irregularity Profiles</em>，给出更详细的教学型案例解读：研究问题、实验协议、方法比较、分组结果与局限。</p>
+    </section>
+
+    <section class="oer-section" id="case-question">
+      <span class="section-label">研究问题</span>
+      <h2>这个案例的核心问题是什么？</h2>
+      <div class="oer-note">
+        <p>在按日预测月经相关事件时，穿戴生理信号是否能在日历与个人历史基线之外提供实质增益？这种增益是否依赖于不规则分型，而不是简单的“规律/不规律”二分？</p>
+      </div>
+      <ul class="risk-list">
+        <li>在按人切分、贴近部署现实的评估下，current-cycle 生理信号是否稳定优于静态历史参照？</li>
+        <li>增益是否来自所有不规则人群，还是集中在特定不规则机制（如高变异）？</li>
+        <li>在固定 wearable 推断路径后，继续叠加历史信息是否带来一致额外收益？</li>
+      </ul>
+    </section>
+
+    <section class="oer-section" id="case-setup">
+      <span class="section-label">研究设定</span>
+      <h2>数据与评估协议（详细版）</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>数据范围</h3>
+          <p>数据来自 mcPHASES（穿戴、激素、自报多模态）。处理后共 111 个周期、40 名用户；其中 79 个带标签周期（37 名用户）用于带标签的排卵与下次月经时机分析。</p>
+        </article>
+        <article class="oer-card">
+          <h3>按日预测约束</h3>
+          <p>在周期第 d 天仅可使用截至 d 天可见信息；人群共享 wearable 模型按 leave-one-subject-out 评估，避免同一受试者信息泄漏到训练与测试。</p>
+        </article>
+      </div>
+      <div class="oer-note">
+        <p>不规则性按两轴分析：平均周期长度（短/典型/长）与周期间变异（低/中/高），并额外看稳定长度交叉组（如 long-stable）。这些标签仅用于分析，不作为模型输入。</p>
+      </div>
+    </section>
+
+    <section class="oer-section" id="case-methods">
+      <span class="section-label">方法对比</span>
+      <h2>具体比较了哪些方法？</h2>
+      <ul class="risk-list">
+        <li><strong>Calendar：</strong>人群层静态周期先验。</li>
+        <li><strong>History-only：</strong>个体历史周期长度静态基线。</li>
+        <li><strong>Wearable reference：</strong>固定的人群共享 wearable 路径（当前周期生理信号）。</li>
+        <li><strong>Wearable + History ACL：</strong>在倒计时阶段加入历史平均周期长度先验。</li>
+        <li><strong>Wearable + history-physiology refinement：</strong>在倒计时阶段加入历史生理相似性修正。</li>
+      </ul>
+      <table class="tight-table">
+        <thead>
+          <tr>
+            <th>方法</th>
+            <th>总体 MAE (天)</th>
+            <th>落在 +/- 3 天内比例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Calendar</td>
+            <td>3.843</td>
+            <td>0.557</td>
+          </tr>
+          <tr>
+            <td>History-only</td>
+            <td>4.492</td>
+            <td>0.471</td>
+          </tr>
+          <tr>
+            <td>Wearable reference</td>
+            <td><strong>1.850</strong></td>
+            <td><strong>0.757</strong></td>
+          </tr>
+          <tr>
+            <td>Wearable + History ACL</td>
+            <td>2.152</td>
+            <td>0.686</td>
+          </tr>
+          <tr>
+            <td>Wearable + history-physiology refinement</td>
+            <td>2.216</td>
+            <td>0.714</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small-note">总体上，固定 wearable 参考优于两个静态参照；但在该设置下，继续叠加倒计时历史信息并未形成一致的总体额外收益。</p>
+    </section>
+
+    <section class="oer-section" id="case-findings">
+      <span class="section-label">主要发现</span>
+      <h2>分组结果具体说明了什么？</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card accent-card">
+          <h3>长周期与高变异组增益最明显</h3>
+          <p>相对 History-only，long 组 MAE 从 10.286 降至 1.325；high-variability 组从 10.430 降至 1.087。</p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>long-stable 组也可见强收益</h3>
+          <p>long-stable 子组 MAE 从 8.000 降至 1.019，说明当前周期生理证据在该分型中有明显价值。</p>
+        </article>
+        <article class="oer-card">
+          <h3>存在反例：short-stable 组</h3>
+          <p>short-stable 中 History-only 优于 wearable reference（2.750 vs 4.202），提示偏移但稳定的人群可能更适合历史基线。</p>
+        </article>
+        <article class="oer-card">
+          <h3>历史增强属于“选择性改进”</h3>
+          <p>两个倒计时历史变体在 high-variability 组可进一步改善（到 0.945 与 0.872），但并未在所有稳定或典型子组中普遍提升。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="case-limits">
+      <span class="section-label">局限与后续</span>
+      <h2>哪些结论仍需更强证据？</h2>
+      <ul class="risk-list">
+        <li>带标签样本规模仍有限（79 个周期，37 名用户），且部分子组稀疏，分组排序应视为指示性证据。</li>
+        <li>结果建立在单一 subject-wise 协议与当前队列上，仍需在更大、独立的纵向数据中重复验证。</li>
+        <li>个性化目前主要检视倒计时阶段入口，管线其他入口（何时、何层引入个性化）仍是开放问题。</li>
+      </ul>
+      <p class="note-inline">建议把这个案例作为实证锚点，再回到领域综述中的开放问题框架，继续扩展不规则分型、标签透明度与部署现实研究。</p>
+    </section>
+
+    <section class="next-step-panel">
+      <span class="panel-title">读完本页后</span>
+      <div class="next-step-grid">
+        <a class="next-step-card" href="survey_zh.html#open-questions">
+          <h3>回到开放问题</h3>
+          <p>把已有结论放回开放问题清单，判断哪些问题仍值得继续推进。</p>
+        </a>
+        <a class="next-step-card" href="resources_zh.html">
+          <h3>数据与代码</h3>
+          <p>查看整理后的资源入口，了解常见数据路线与 baseline 设置方式。</p>
+        </a>
+        <a class="next-step-card" href="survey_zh.html">
+          <h3>领域综述</h3>
+          <p>若术语或任务边界仍不清晰，可先补周期基础与评估陷阱。</p>
+        </a>
+      </div>
+    </section>
+
+    <footer class="oer-footer">
+      <p class="mb-0 text-light"><a href="index_zh.html">↑ 返回开始这里</a> · <a href="license_zh.html">许可与引用</a></p>
+    </footer>
+  </main>
+</body>
+</html>

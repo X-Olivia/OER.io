@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kaggle Dataset Analysis — Menstrual Prediction OER</title>
-  <meta
-    name="description"
-    content="Local analysis of the Kaggle menstrual cycle dataset, including cleaning, feature engineering, and baseline modelling."
-  />
+  <title>Kaggle Teaching Case | Menstrual Prediction OER</title>
+  <meta name="description" content="A Kaggle-based teaching case for menstrual-prediction baselines: cleaning, feature engineering, GroupKFold, and result boundaries." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -23,11 +20,11 @@
       <div class="oer-logo"><a href="index.html">OER · Menstrual Prediction</a></div>
       <nav>
         <ul class="oer-nav">
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="survey.html">Survey</a></li>
-          <li><a href="literature.html">Literature</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="research.html">Research</a></li>
+          <li><a href="index.html">Start Here</a></li>
+          <li><a href="survey.html">Field Guide</a></li>
+          <li><a href="literature.html">Literature Map</a></li>
+          <li><a href="resources.html">Data &amp; Code</a></li>
+          <li><a href="thesis.html">Research Case Study</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="license.html">License</a></li>
         </ul>
@@ -36,28 +33,32 @@
   </header>
 
   <main class="oer-wrap">
-    <h1 class="heading-serif page-title">Kaggle Dataset Analysis</h1>
-    <p class="page-subtitle">
-      A local analysis page for the Kaggle menstrual cycle dataset. It summarises the dataset, the cleaning
-      and feature-engineering decisions, and the baseline experiments I ran on it.
-    </p>
+    <section class="oer-hero">
+      <p class="eyebrow">Teaching Case</p>
+      <h1 class="heading-serif page-title">Kaggle Teaching Case</h1>
+      <p class="page-subtitle">This is a workflow-learning page for baseline construction, not a page of strong clinical or wearable evidence.</p>
+    </section>
 
-    <nav class="oer-toc" aria-label="Dataset analysis sections">
-      <a href="#overview">Overview</a>
-      <a href="#files">Files</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#results">Results</a>
-      <a href="#limitations">Limitations</a>
-    </nav>
+    <section class="oer-section">
+      <span class="section-label">Why look at this case</span>
+      <div class="guide-grid">
+        <article class="guide-card">
+          <h3>What you learn</h3>
+          <p>How to clean the data, engineer features, evaluate by participant grouping, and interpret a baseline with clear limits.</p>
+        </article>
+        <article class="guide-card">
+          <h3>Who it helps</h3>
+          <p>AI / DS newcomers, developers building quick prototypes, and medical readers who want to see what a data workflow looks like end to end.</p>
+        </article>
+        <article class="guide-card warm-card">
+          <h3>How not to misread it</h3>
+          <p>It is not a wearable study, not a clinically anchored label set, and not enough evidence on its own for production product claims.</p>
+        </article>
+      </div>
+    </section>
 
-    <section class="oer-section" id="overview">
-      <h2>Overview</h2>
-      <p>
-        This local analysis focuses on preparing the Kaggle menstrual cycle dataset for modelling, especially
-        for cycle-length prediction under grouped evaluation. The workflow cleans the raw table, engineers a
-        medication-impact feature, removes or imputes high-missingness variables using domain logic, and then
-        evaluates three baseline model families: Decision Tree, Random Forest, and LSTM.
-      </p>
+    <section class="oer-section">
+      <h2>Case overview</h2>
       <table>
         <thead>
           <tr>
@@ -67,108 +68,77 @@
         </thead>
         <tbody>
           <tr><td>Raw file</td><td><code>FedCycleData071012 (2).csv</code></td></tr>
-          <tr><td>Cleaned modelling table</td><td>1,660 rows × 12 columns</td></tr>
+          <tr><td>Clean modelling table</td><td>1,660 rows × 12 columns</td></tr>
           <tr><td>Main target</td><td><code>LengthofCycle</code></td></tr>
-          <tr><td>Evaluation strategy</td><td>GroupKFold / grouped splits by participant</td></tr>
-          <tr><td>Local analysis code</td><td><code>open_source/P1.ipynb</code></td></tr>
+          <tr><td>Evaluation strategy</td><td>GroupKFold / participant-level grouping</td></tr>
+          <tr><td>Analysis code</td><td>The local notebook is not bundled with the current website repo</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section class="oer-section" id="files">
-      <h2>Linked files</h2>
+    <section class="oer-section">
+      <h2>Three things this case teaches well</h2>
       <div class="oer-grid two-up">
         <article class="oer-card">
-          <h3>Analysis code</h3>
-          <p>The full local workflow, including cleaning, feature handling, grouped validation, and baseline models.</p>
-          <p><a href="open_source/P1.ipynb" class="btn-metal">Open analysis code</a></p>
+          <h3>Data preparation often matters more than model choice</h3>
+          <p>Variable filtering, missing-data decisions, and feature definitions shape the result before architecture does.</p>
+        </article>
+        <article class="oer-card">
+          <h3>GroupKFold is not a side detail</h3>
+          <p>If the same participant leaks across train and test, the result will be systematically inflated.</p>
+        </article>
+        <article class="oer-card">
+          <h3>Public tabular data are good for baselines, not overclaiming</h3>
+          <p>This is a useful sandbox for experiment design, but it is not a replacement for stronger labels or multimodal physiology.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section">
+      <h2>Linked files</h2>
+      <div class="warning-note">
+        <p>This repo currently keeps the teaching page only. The original notebook, raw CSV, cleaned CSV, and supporting documentation are not bundled in this website snapshot.</p>
+      </div>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Analysis notebook</h3>
+          <p>Not bundled in the current website repo.</p>
         </article>
         <article class="oer-card">
           <h3>Dataset documentation</h3>
-          <p>Local markdown documentation describing the original table, missingness, preprocessing logic, and headline metrics.</p>
-          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/Dataset_Documentation.md" class="btn-metal">Open documentation</a></p>
+          <p>Not bundled in the current website repo.</p>
         </article>
         <article class="oer-card">
           <h3>Raw CSV</h3>
-          <p>The raw dataset used as input for the local analysis pipeline.</p>
-          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/FedCycleData071012%20(2).csv" class="btn-metal">Open raw CSV</a></p>
+          <p>Not bundled in the current website repo.</p>
         </article>
         <article class="oer-card">
-          <h3>Cleaned CSV</h3>
-          <p>The processed modelling table exported after feature selection and imputation.</p>
-          <p><a href="open_source/dataset/menstrual-cycle-data-kaggle/cleaned_menstrual_data.csv" class="btn-metal">Open cleaned CSV</a></p>
+          <h3>Clean CSV</h3>
+          <p>Not bundled in the current website repo.</p>
         </article>
       </div>
     </section>
 
-    <section class="oer-section" id="pipeline">
-      <h2>What the analysis does</h2>
-      <ol class="oer-steps">
-        <li>Checks the raw Kaggle table and inspects missingness in cycle and fertility variables.</li>
-        <li>Selects candidate features for modelling rather than using the full raw schema unchanged.</li>
-        <li>Processes medication text into a structured <code>Med_Class</code> feature with domain-based classes.</li>
-        <li>Uses participant-level mean imputation for selected cycle variables such as ovulation day and menses length.</li>
-        <li>Builds a compact modelling table with participant ID, cycle number, core reproductive-history variables, ovulation estimate, and target cycle length.</li>
-        <li>Evaluates Decision Tree, Random Forest, and LSTM baselines under grouped validation to reduce leakage.</li>
-      </ol>
-      <div class="oer-note">
-        <p>
-          This matters because menstrual datasets often contain many sparse demographic or clinical columns that
-          look informative but are too incomplete to use naively. This analysis makes those feature decisions explicit.
-        </p>
+    <section class="next-step-panel">
+      <span class="panel-title">After this page</span>
+      <div class="next-step-grid">
+        <a class="next-step-card" href="resources.html#compare">
+          <h3>Return to the dataset chooser</h3>
+          <p>Compare the Kaggle route against mcPHASES directly.</p>
+        </a>
+        <a class="next-step-card" href="survey.html#evaluation">
+          <h3>Return to evaluation</h3>
+          <p>If you want deeper intuition for GroupKFold and leakage, go back to the evaluation section.</p>
+        </a>
+        <a class="next-step-card" href="survey.html#open-questions">
+          <h3>Connect it to a research question</h3>
+          <p>Turn the baseline workflow into a real research direction rather than a one-off exercise.</p>
+        </a>
       </div>
-    </section>
-
-    <section class="oer-section" id="results">
-      <h2>Headline results from the local documentation</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Setup</th>
-            <th>Reported performance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Decision Tree</td>
-            <td><code>max_depth=5</code>, grouped cross-validation</td>
-            <td>MAE ≈ 1.871 days, R² ≈ 0.457</td>
-          </tr>
-          <tr>
-            <td>Random Forest</td>
-            <td><code>n_estimators=300</code>, grouped cross-validation</td>
-            <td>MAE ≈ 1.896 days, R² ≈ 0.451</td>
-          </tr>
-          <tr>
-            <td>LSTM</td>
-            <td>3-cycle sequence window, grouped participant split</td>
-            <td>Test MAE ≈ 1.972 days, R² ≈ 0.342</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        In the local documentation, <code>EstimatedDayofOvulation</code> is reported as the dominant predictor,
-        followed by <code>LengthofMenses</code>, <code>CycleWithPeakorNot</code>, and <code>ReproductiveCategory</code>.
-      </p>
-    </section>
-
-    <section class="oer-section" id="limitations">
-      <h2>Limitations and interpretation</h2>
-      <p>
-        This dataset is useful for baseline experimentation, but it should not be mistaken for a modern
-        wearable physiology dataset. It is much stronger for cycle-structure analysis than for low-level
-        physiological signal modelling.
-      </p>
-      <p>
-        The value of this page is to show what the dataset looks like after cleaning, which features were
-        retained, and what performance simple baseline models achieved under grouped evaluation.
-      </p>
-      <p><a href="resources.html" class="btn-metal">Back to resources</a></p>
     </section>
 
     <footer class="oer-footer">
-      <p class="mb-0 text-light"><a href="resources.html">↑ Resources</a> · <a href="license.html">License &amp; citation</a></p>
+      <p class="mb-0 text-light"><a href="index.html">↑ Back to Start Here</a> · <a href="license.html">License &amp; Citation</a></p>
     </footer>
   </main>
 </body>

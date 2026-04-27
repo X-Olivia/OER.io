@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>资源与数据 — 月经预测 OER</title>
+  <title>数据与代码｜月经预测 OER</title>
   <meta
     name="description"
-    content="月经预测研究的数据集、数据获取现状及可重复性指南。"
+    content="月经预测研究的数据与代码入口：公开数据集、starter code、baseline 路径、数据访问现实与可重复性清单。"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +23,11 @@
       <div class="oer-logo"><a href="index_zh.html">OER · 月经预测</a></div>
       <nav>
         <ul class="oer-nav">
-          <li><a href="index_zh.html">首页</a></li>
+          <li><a href="index_zh.html">开始这里</a></li>
           <li><a href="survey_zh.html">领域综述</a></li>
-          <li><a href="literature_zh.html">文献深挖</a></li>
-          <li><a href="resources_zh.html" aria-current="page">资源</a></li>
-          <li><a href="research_zh.html">研究</a></li>
+          <li><a href="literature_zh.html">文献地图</a></li>
+          <li><a href="resources_zh.html" aria-current="page">数据与代码</a></li>
+          <li><a href="thesis_zh.html">研究案例</a></li>
           <li><a href="about_zh.html">关于</a></li>
           <li><a href="license_zh.html">许可</a></li>
         </ul>
@@ -36,190 +36,226 @@
   </header>
 
   <main class="oer-wrap">
-    <h1 class="heading-serif page-title">资源与数据</h1>
-    <p class="page-subtitle">
-      哪些是公开可用的，哪些通常不是，以及新研究员如何开展有用的工作。
-    </p>
+    <section class="oer-hero">
+      <p class="eyebrow">Data &amp; Code</p>
+      <h1 class="heading-serif page-title">数据与代码</h1>
+      <p class="page-subtitle">这页不是把资源平铺出来，而是帮助你快速判断：我现在最需要公开数据、starter code、baseline 案例，还是可重复性检查清单。</p>
+      <div class="hero-actions">
+        <a href="#task-entry" class="btn-metal">按任务进入</a>
+        <a href="#dataset-chooser" class="btn-subtle">直接选数据集</a>
+      </div>
+    </section>
+
+    <section class="oer-section" id="task-entry">
+      <span class="section-label">按任务进入</span>
+      <h2>你现在最需要什么</h2>
+      <div class="task-grid">
+        <a class="task-card" href="#dataset-chooser">
+          <h3>我需要公开数据</h3>
+          <p>先看数据集选择器，再判断是做表格 baseline、可穿戴 proof-of-concept，还是历史性周期建模。</p>
+        </a>
+        <a class="task-card" href="#starter-code">
+          <h3>我需要 starter code</h3>
+          <p>直接进入本地 Kaggle 案例和 mcPHASES 处理工作流，快速找到可落地的起点。</p>
+        </a>
+        <a class="task-card" href="#starter-path">
+          <h3>我需要 baseline 路径</h3>
+          <p>看四条现实起步策略，判断你当前更适合做透明基线、穿戴 proof-of-concept 还是评估方法论文。</p>
+        </a>
+        <a class="task-card" href="#reproducibility">
+          <h3>我需要可重复性清单</h3>
+          <p>如果你已经开始实验，这部分会帮你迅速发现最容易被忽略的结构性问题。</p>
+        </a>
+      </div>
+    </section>
 
     <nav class="oer-toc" aria-label="Resources sections">
-      <a href="#open-data">公开数据集</a>
-      <a href="#local-analysis">本地分析案例</a>
-      <a href="#starter-code">入门代码</a>
+      <a href="#starter-path">起步路径</a>
+      <a href="#dataset-chooser">数据集选择器</a>
+      <a href="#compare">Kaggle vs mcPHASES</a>
+      <a href="#starter-code">Starter code</a>
       <a href="#open-repos">开源仓库</a>
       <a href="#restricted">受限数据</a>
-      <a href="#starter-path">起步路径</a>
       <a href="#reproducibility">可重复性</a>
     </nav>
 
-    <section class="oer-section" id="open-data">
-      <h2>公开可访问的数据集</h2>
-      <table>
+    <section class="oer-section" id="starter-path">
+      <span class="section-label">优先阅读</span>
+      <h2>新研究员的现实起步路径</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card accent-card">
+          <h3>方案 A：先打牢透明基线</h3>
+          <p>使用自我报告或历史周期数据，建立日历 / 历史基线，并把评估协议写得异常清楚。这通常比一个标签混乱的弱穿戴模型更站得住脚。</p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>方案 B：做穿戴概念验证</h3>
+          <p>使用 mcPHASES 这样的开放数据集测试体温和心血管特征，但避免从小样本直接外推出强泛化结论。</p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>方案 C：做临床锚定小样本</h3>
+          <p>如果能自己采集数据，一个标注清晰的中小规模 cohort 往往比一个大而弱标签的便利样本更有科学价值。</p>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>方案 D：做评估方法论文</h3>
+          <p>围绕 irregularity subgroup、指标标准化或标签定义比较的研究，本身就是当前领域非常实际的贡献。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oer-section" id="dataset-chooser">
+      <h2>数据集选择器</h2>
+      <table class="compare-table">
         <thead>
           <tr>
             <th>数据集</th>
-            <th>类型</th>
-            <th>规模</th>
-            <th>重要意义</th>
+            <th>适合谁</th>
+            <th>能回答什么</th>
+            <th>不适合回答什么</th>
+            <th>主要风险</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">mcPHASES</a></td>
-            <td>穿戴 + 激素 + 自我报告</td>
-            <td>两个研究时期的 42 名参与者</td>
-            <td>将穿戴设备与月经健康标签和激素测量联系起来的最清晰公开数据集之一。</td>
+            <td><strong>mcPHASES</strong></td>
+            <td>想做 wearable proof-of-concept 的 AI / DS 研究者</td>
+            <td>多模态生理信号与月经健康标签如何对齐</td>
+            <td>大规模产品级泛化能力</td>
+            <td>样本量有限，预处理门槛较高</td>
           </tr>
           <tr>
-            <td><a href="https://epublications.marquette.edu/data_nfp/7/" target="_blank" rel="noopener">Menstrual Cycle Data (Marquette)</a></td>
-            <td>自然生育力计划记录</td>
-            <td>历史性的人类受试者数据集</td>
-            <td>对周期结构、粘液、生育意识及非穿戴历史建模非常有用。</td>
+            <td><strong>Kaggle 月经周期表格数据</strong></td>
+            <td>想快速做 baseline 的开发者或数据科学新手</td>
+            <td>表格清洗、特征工程、grouped evaluation</td>
+            <td>严格的临床或 wearable 结论</td>
+            <td>来源、标签与预处理质量需要额外核查</td>
           </tr>
           <tr>
-            <td><a href="https://www.kaggle.com/datasets/nikitabisht/menstrual-cycle-data" target="_blank" rel="noopener">Kaggle 托管及 App 风格导出</a></td>
-            <td>多为自我报告的表格数据</td>
-            <td>视上传而定</td>
-            <td>便于快速实验，但出处和预处理质量需要额外检查。本站提供了一个本地分析页面和实验总结。</td>
+            <td><strong>Marquette Menstrual Cycle Data</strong></td>
+            <td>关注历史性周期结构和生育感知记录的研究者</td>
+            <td>非穿戴历史数据中的周期结构与规则</td>
+            <td>现代消费级 wearable 模型验证</td>
+            <td>历史数据语境和采集方式与现代 app 数据不同</td>
           </tr>
         </tbody>
       </table>
       <div class="oer-note">
-        <p>
-          公开访问并不代表质量统一。务必记录标签来源、数据缺失模式、群体过滤器，以及数据集是否反映了真实的部署环境或更受控的研究环境。
-        </p>
+        <p>公开访问不代表质量统一。每次使用数据集都应明确记录标签来源、缺失模式、群体过滤器，以及这些数据究竟更像真实部署环境还是受控研究环境。</p>
       </div>
     </section>
 
-    <section class="oer-section" id="local-analysis">
-      <h2>Kaggle 数据集本地分析案例</h2>
-      <div class="oer-card accent-card">
-        <h3>数据清洗、特征工程与基准模型</h3>
-        <p>
-          我也在本地对 Kaggle 月经周期数据集进行了分析。此页面链接了分析代码、数据集文档、清洗后的建模表，以及对实验设置和基准结果的简要总结。
-        </p>
-        <p>
-          <a href="kaggle-p1_zh.html" class="btn-metal">打开分析页面</a>
-          <a href="open_source/P1.ipynb" class="btn-metal">打开分析代码</a>
-        </p>
+    <section class="oer-section" id="compare">
+      <h2>Kaggle 与 mcPHASES：两种完全不同的起步方式</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card warm-card">
+          <h3>Kaggle 路线</h3>
+          <ul class="tag-list">
+            <li>适合快速入门、做 baseline、练习特征工程</li>
+            <li>主要价值是让你理解数据清洗和分组评估</li>
+            <li>不能把结果误读成强临床或强 wearable 证据</li>
+          </ul>
+        </article>
+        <article class="oer-card accent-card">
+          <h3>mcPHASES 路线</h3>
+          <ul class="tag-list">
+            <li>适合进入 wearable 生理信号处理和多模态对齐</li>
+            <li>主要价值是方法验证，而不是规模化产品验证</li>
+            <li>更贴近生理问题，但数据处理复杂度更高</li>
+          </ul>
+        </article>
       </div>
     </section>
 
     <section class="oer-section" id="starter-code">
-      <h2>PhysioNet mcPHASES 数据集的入门代码</h2>
-      <div class="oer-card accent-card">
-        <h3>推荐：PhysioNet / mcPHASES 数据处理工作流</h3>
-        <p>
-          月经预测的首要挑战不是模型，而是<strong>数据对齐</strong>。下面这个仓库和上面的 Kaggle 本地分析是分开的；它处理的是
-          <a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">PhysioNet 上的 mcPHASES 数据集</a>，
-          重点是对不规则周期中的生理信号进行对齐和整理：
-        </p>
-        <p>
-          <a href="https://github.com/X-Olivia/Menstrual-Cycle-Prediction-from-WearablePhysiological-Data-in-Irregular-Cycles.git" class="btn-metal" target="_blank" rel="noopener">查看 GitHub 仓库</a>
-        </p>
-        <p><strong>路径：</strong> <code>new_workspace/data_process</code></p>
-        <p>
-          该目录包含处理 mcPHASES 中体温、HRV、激素相关事件和日历数据的脚本。它面向的是 PhysioNet 的穿戴数据集，而不是 Kaggle 的表格型数据集。
-        </p>
+      <h2>Starter code 与教学型落点</h2>
+      <div class="oer-grid two-up">
+        <article class="oer-card">
+          <h3>Kaggle 教学案例</h3>
+          <p>一个低门槛 baseline 案例，帮助你看懂数据清洗、特征处理和 GroupKFold 评估在这个领域里为什么重要。</p>
+          <p><a href="kaggle-p1_zh.html" class="btn-metal">打开教学案例</a></p>
+          <p class="small-note">注：本仓库当前只保留案例说明页，原始 Notebook 与本地导出文件未随网站仓库一同打包。</p>
+        </article>
+        <article class="oer-card">
+          <h3>mcPHASES 处理工作流</h3>
+          <p>这是更贴近 wearable 生理研究的路径，重点不在模型，而在如何对齐体温、HRV、激素相关事件和日历数据。</p>
+          <p><a href="https://github.com/X-Olivia/Menstrual-Cycle-Prediction-from-WearablePhysiological-Data-in-Irregular-Cycles.git" target="_blank" rel="noopener" class="btn-metal">查看 GitHub 仓库</a></p>
+        </article>
       </div>
     </section>
 
     <section class="oer-section" id="open-repos">
       <h2>精选开源仓库</h2>
-      <div class="oer-grid two-up">
-        <article class="oer-card">
+      <div class="oer-grid two-up repo-grid">
+        <article class="oer-card repo-card">
           <h3>iurteaga/menstrual_cycle_analysis</h3>
-          <p>实现了明确考虑受试者依从性和缺失数据的生成模型。对真实世界的移动健康数据至关重要。</p>
+          <p>显式考虑依从性与缺失数据的生成模型。很适合理解真实世界 mHealth 数据的结构性问题。</p>
           <a href="https://github.com/iurteaga/menstrual_cycle_analysis" target="_blank" rel="noopener">链接</a>
         </article>
-        <article class="oer-card">
+        <article class="oer-card repo-card">
           <h3>cilab-ufersa/period_cycle_prediction</h3>
-          <p>专注于使用 LSTM 和 GRU 架构进行周期长度预测。适合作为标准时间序列模型的基准测试。</p>
+          <p>使用 LSTM / GRU 进行周期长度预测，适合作为标准时间序列模型的 baseline 参考。</p>
           <a href="https://github.com/cilab-ufersa/period_cycle_prediction" target="_blank" rel="noopener">链接</a>
         </article>
-        <article class="oer-card">
+        <article class="oer-card repo-card">
           <h3>lenakmeth/MenstruatioNN</h3>
-          <p>一个简单的使用 RNN 进行多步时间序列经期起点预测的实现。</p>
+          <p>一个较直接的 RNN 多步预测实现，适合帮助医学背景读者看懂时序模型如何组织输入输出。</p>
           <a href="https://github.com/lenakmeth/MenstruatioNN" target="_blank" rel="noopener">链接</a>
         </article>
-        <article class="oer-card">
-          <h3>nhaboudal/SleepReadiness_Predictor</h3>
-          <p>整合 Oura Ring 和 Natural Cycles 数据以映射跨相位生理变化的示例。</p>
+        <article class="oer-card repo-card">
+          <h3>nhaboudal/MenstrualCycle_SleepReadiness_Predictor</h3>
+          <p>展示 Oura Ring 与 Natural Cycles 数据如何被用来探索跨相位的生理变化。</p>
           <a href="https://github.com/nhaboudal/MenstrualCycle_SleepReadiness_Predictor" target="_blank" rel="noopener">链接</a>
         </article>
       </div>
     </section>
 
     <section class="oer-section" id="restricted">
-      <h2>为什么大多数影响力大的数据集并非完全公开</h2>
-      <p>
-        基于月经健康 App 和消费级穿戴设备的大规模研究塑造了该领域，但许多此类论文背后的原始数据集通常不公开。从文献中推测，这可能是由于隐私限制、商业所有权、知情同意范围以及生殖健康数据的高度敏感性。
-      </p>
+      <h2>为什么最有影响力的数据通常不是完全公开的</h2>
+      <p>大规模 App 和消费级 wearable 研究塑造了这个领域，但它们背后的原始纵向数据通常不会公开下载。最常见原因是隐私、商业所有权、知情同意范围，以及生殖健康数据本身的高度敏感性。</p>
       <ul>
-        <li>基于 App 的群体论文展示了规模，但不一定提供公开的重用权限。</li>
-        <li>穿戴设备研究通常发布发现结果，而非纵向的原始数据流。</li>
-        <li>像 mcPHASES 这样的开放资源因此显得尤为珍贵，因为它们允许方法比较和管线调试。</li>
-        <li>还有一种情况并不是“完全不开放”，而是不能公开下载，但可以通过研究合作或申请访问的方式获得。例如，Clue 明确写过研究合作使用去标识化数据的条件，Oura 也提供面向研究项目的数据访问计划。此类访问通常不是公开权限，而是需要根据伦理、隐私和商业条款单独协商。<a href="https://helloclue.com/articles/about-clue/scientific-research-at-clue" target="_blank" rel="noopener">Clue</a> <a href="https://organizations.ouraring.com/solutions/research" target="_blank" rel="noopener">Oura</a></li>
+        <li>App 论文展示的是规模和趋势，不一定提供重用权限。</li>
+        <li>可穿戴设备研究常常只公开发现，不公开连续原始数据流。</li>
+        <li>像 mcPHASES 这样的开放资源因此格外珍贵，因为它们允许方法比较和管线调试。</li>
+        <li>部分企业数据不是公开下载，但可能通过研究合作申请访问，例如 Clue 与 Oura 的研究计划。<a href="https://helloclue.com/articles/about-clue/scientific-research-at-clue" target="_blank" rel="noopener">Clue</a> <a href="https://organizations.ouraring.com/solutions/research" target="_blank" rel="noopener">Oura</a></li>
       </ul>
     </section>
 
-    <section class="oer-section" id="starter-path">
-      <h2>新研究员的现实起步路径</h2>
-      <div class="oer-grid two-up">
-        <article class="oer-card">
-          <h3>方案 A：打牢基准基础</h3>
-          <p>
-            使用自我报告或周期历史数据，建立透明的日历和历史基准，并确保评估协议异常清晰。这通常比在带噪声标签上建立弱穿戴模型更具发表价值。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>方案 B：穿戴概念验证</h3>
-          <p>
-            使用 mcPHASES 或其他描述良好的数据集来测试体温和心血管特征，但要谨慎定义终点，避免过度推断小样本量的泛化能力。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>方案 C：临床锚定的小规模研究</h3>
-          <p>
-            如果你能收集自己的数据，一个适中规模但具有明确激素或 LH 锚定标签的群体，可能比一个大而弱标签的便利样本在科学上更有用。
-          </p>
-        </article>
-        <article class="oer-card">
-          <h3>方案 D：评估方法论文</h3>
-          <p>
-            关于不规则性分组、标准化指标或比较标签定义的论文也是一种合法的贡献，因为这些问题目前阻碍了有意义的跨研究比较。
-          </p>
-        </article>
+    <section class="oer-section" id="reproducibility">
+      <span class="section-label">底线清单</span>
+      <h2>可重复性检查清单</h2>
+      <div class="oer-note">
+        <p>对 App 开发者，这是功能可信度底线；对 AI / DS 研究者，这是实验有效性底线；对医学研究者，这是判断算法结论能否信的底线。</p>
+      </div>
+      <ol class="oer-steps">
+        <li>明确预测目标：下次出血、排卵日、受孕窗口还是周期相位。</li>
+        <li>明确标签规则：例如 LH onset、LH peak 或 peak + 1 天。</li>
+        <li>说明预测时可用信息，避免未来信息泄露。</li>
+        <li>声称泛化时优先使用 subject-wise split 或 GroupKFold。</li>
+        <li>在适当情况下同时报告连续误差和窗口型准确率。</li>
+        <li>描述缺失值模式和依从性，而不是静默删除困难样本。</li>
+        <li>写清 cohort 是规则型、混合型还是明确不规则型。</li>
+      </ol>
+    </section>
+
+    <section class="next-step-panel">
+      <span class="panel-title">读完这页后</span>
+      <div class="next-step-grid">
+        <a class="next-step-card" href="kaggle-p1_zh.html">
+          <h3>去看 baseline 教学案例</h3>
+          <p>如果你想快速进入实操，这会是最省摩擦的入口。</p>
+        </a>
+        <a class="next-step-card" href="survey_zh.html#evaluation">
+          <h3>回到评估方法</h3>
+          <p>如果你还不确定 split、label 或 metric 的含义，先把评估逻辑补齐。</p>
+        </a>
+        <a class="next-step-card" href="survey_zh.html#open-questions">
+          <h3>去看开放问题</h3>
+          <p>把资源路径和你真正想做的研究问题连起来。</p>
+        </a>
       </div>
     </section>
 
-    <section class="oer-section" id="reproducibility">
-      <h2>可重复性检查清单</h2>
-      <ol class="oer-steps">
-        <li>明确说明预测目标：下次出血、排卵日、受孕窗或相位。</li>
-        <li>明确说明标签规则：例如 LH 开始、LH 峰值或峰值+1天。</li>
-        <li>描述预测时可用的信息以及哪些是禁用的（防止未来信息泄露）。</li>
-        <li>在声称对新受试者具有泛化能力时，优先使用受试者分割（Subject-wise splits）。</li>
-        <li>在适当的情况下，同时报告连续误差和基于窗口的准确率。</li>
-        <li>描述缺失值模式和受试者依从性，而非无声地删除“困难”案例。</li>
-        <li>说明群体是仅限规则的、混合的还是明确不规则的。</li>
-      </ol>
-    </section>
-
-    <section class="oer-section" id="references">
-      <h2>参考文献</h2>
-      <ol class="oer-ref-list">
-        <li id="ref-bull">Bull JR, Rowland SP, Berglund Scherwitzl E, et al. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. <em>npj Digital Medicine</em>. 2019;2:83. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-grieger">Grieger JA, Norman RJ. Menstrual Cycle Length and Patterns in a Global Cohort of Women Using a Mobile Phone App. <em>Journal of Medical Internet Research</em>. 2020;22(6):e17109. <a href="https://www.jmir.org/2020/6/e17109" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-li">Li K, Urteaga I, Wiggins CH, et al. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data. <em>npj Digital Medicine</em>. 2020;3:79. <a href="https://pubmed.ncbi.nlm.nih.gov/32509976/" target="_blank" rel="noopener">PubMed 链接</a></li>
-        <li id="ref-goodale">Goodale BM, Shilaih M, Falco L, et al. Wearable Sensors Reveal Menses-Driven Changes in Physiology and Enable Prediction of the Fertile Window: Observational Study. <em>Journal of Medical Internet Research</em>. 2019;21(5):e13404. <a href="https://www.jmir.org/2019/5/e13404/" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-maijala">Maijala A, Kinnunen H, Koskimäki H, et al. Nocturnal finger skin temperature in menstrual cycle tracking: ambulatory pilot study using a wearable Oura ring. <em>BMC Women's Health</em>. 2019;19:150. <a href="https://link.springer.com/article/10.1186/s12905-019-0844-9" target="_blank" rel="noopener">文章链接</a></li>
-        <li id="ref-mcphases">Lin B, Li JY, Kalani K, Truong K, Mariakakis A. mcPHASES: A Dataset of Physiological, Hormonal, and Self-reported Events and Symptoms for Menstrual Health Tracking with Wearables. PhysioNet. Version 1.0.0, published September 9, 2025. <a href="https://www.physionet.org/content/mcphases/" target="_blank" rel="noopener">数据集链接</a></li>
-        <li id="ref-fehring">Fehring RJ. Menstrual Cycle Data. Marquette University e-Publications. 2012. <a href="https://epublications.marquette.edu/data_nfp/7/" target="_blank" rel="noopener">数据集链接</a></li>
-      </ol>
-    </section>
-
     <footer class="oer-footer">
-      <p class="mb-0 text-light"><a href="index_zh.html">↑ 首页</a> · <a href="license_zh.html">许可与引用</a></p>
+      <p class="mb-0 text-light"><a href="index_zh.html">↑ 返回开始这里</a> · <a href="license_zh.html">许可与引用</a></p>
     </footer>
   </main>
 </body>
